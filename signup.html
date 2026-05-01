@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - HomeLearn Academy</title>
+    <meta name="description" content="Start your free trial of HomeLearn Academy today.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><a href="index.html">HomeLearn Academy</a></h1>
+                    <p class="tagline">K-5 Homeschool Curriculum Made Simple</p>
+                </div>
+                
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <nav class="main-navigation" role="navigation">
+                    <ul class="nav-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="has-submenu">
+                            <a href="#grades">Grade Levels</a>
+                            <ul class="submenu">
+                                <li><a href="kindergarten.html">Kindergarten</a></li>
+                                <li><a href="grade1.html">1st Grade</a></li>
+                                <li><a href="grade2.html">2nd Grade</a></li>
+                                <li><a href="grade3.html">3rd Grade</a></li>
+                                <li><a href="grade4.html">4th Grade</a></li>
+                                <li><a href="grade5.html">5th Grade</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="resources.html">Free Resources</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="dashboard.html">Parent Dashboard</a></li>
+                        <li><a href="pricing.html" class="btn-nav-premium">Go Premium</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="signup-hero">
+            <div class="container">
+                <h1>Create Your Free Account</h1>
+                <p class="signup-subtitle">Start exploring our K-5 curriculum today. No credit card required.</p>
+            </div>
+        </section>
+
+        <section class="signup-form-section">
+            <div class="container">
+                <div class="signup-grid">
+                    <div class="signup-benefits">
+                        <h2>What You'll Get With Free Access</h2>
+                        <ul class="benefits-list">
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong>Complete Curriculum Overview</strong>
+                                    <p>See the full scope and sequence for all 6 grade levels</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong>Free Resource Links</strong>
+                                    <p>Access curated links to Khan Academy, PBS Kids, and more</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong>Sample Lesson Plans</strong>
+                                    <p>Preview 2 complete lesson plans per grade level</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong>Community Forum</strong>
+                                    <p>Connect with other homeschool parents</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong>Monthly Newsletter</strong>
+                                    <p>Get homeschool tips and resources delivered to your inbox</p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="upgrade-note">
+                            <i class="fas fa-star"></i>
+                            <p><strong>Want more?</strong> Upgrade to Premium anytime for complete lesson plans, printables, and progress tracking.</p>
+                        </div>
+                    </div>
+
+                    <div class="signup-form-container">
+                        <h2>Create Your Account</h2>
+                        
+                        <form id="signupForm" class="signup-form">
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" name="fullName" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password *</label>
+                                <input type="password" id="password" name="password" required minlength="6">
+                                <small>At least 6 characters</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password *</label>
+                                <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="gradeLevel">Child's Grade Level (Optional)</label>
+                                <select id="gradeLevel" name="gradeLevel">
+                                    <option value="">Select grade level</option>
+                                    <option value="kindergarten">Kindergarten</option>
+                                    <option value="grade1">1st Grade</option>
+                                    <option value="grade2">2nd Grade</option>
+                                    <option value="grade3">3rd Grade</option>
+                                    <option value="grade4">4th Grade</option>
+                                    <option value="grade5">5th Grade</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" id="newsletter" name="newsletter">
+                                    Send me homeschool tips and curriculum updates
+                                </label>
+                            </div>
+
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" id="terms" name="terms" required>
+                                    I agree to the <a href="terms-of-service.html" target="_blank">Terms of Service</a> and <a href="privacy-policy.html" target="_blank">Privacy Policy</a> *
+                                </label>
+                            </div>
+
+                            <div id="errorMessage" class="error-message" style="display: none;"></div>
+                            <div id="successMessage" class="success-message" style="display: none;"></div>
+
+                            <button type="submit" class="btn-primary-large" id="signupButton">
+                                <span id="buttonText">Create Account</span>
+                                <span id="buttonSpinner" style="display: none;">
+                                    <i class="fas fa-spinner fa-spin"></i> Creating account...
+                                </span>
+                            </button>
+                        </form>
+
+                        <div class="form-footer">
+                            <p>Already have an account? <a href="login.html">Login here</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="trust-section">
+            <div class="container">
+                <h3>Join Our Growing Community</h3>
+                <div class="trust-stats">
+                    <div class="trust-stat">
+                        <strong>Coming Soon</strong>
+                        <span>Launching 2026</span>
+                    </div>
+                    <div class="trust-stat">
+                        <strong>K-5</strong>
+                        <span>Complete Curriculum</span>
+                    </div>
+                    <div class="trust-stat">
+                        <strong>Free Trial</strong>
+                        <span>No Credit Card</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Grade Levels</h4>
+                    <ul>
+                        <li><a href="kindergarten.html">Kindergarten</a></li>
+                        <li><a href="grade1.html">1st Grade</a></li>
+                        <li><a href="grade2.html">2nd Grade</a></li>
+                        <li><a href="grade3.html">3rd Grade</a></li>
+                        <li><a href="grade4.html">4th Grade</a></li>
+                        <li><a href="grade5.html">5th Grade</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="resources.html">Free Resources</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="dashboard.html">Parent Dashboard</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="faqs.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="forum.html">Community Forum</a></li>
+                        <li><a href="blog.html">Teaching Tips Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Stay Informed</h4>
+                    <p>Join our newsletter for weekly homeschool tips!</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 HomeLearn Academy. All rights reserved.</p>
+                <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const navigation = document.querySelector('.main-navigation');
+            
+            mobileToggle.addEventListener('click', function() {
+                navigation.classList.toggle('active');
+                mobileToggle.classList.toggle('active');
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!navigation.contains(e.target) && !mobileToggle.contains(e.target)) {
+                    navigation.classList.remove('active');
+                    mobileToggle.classList.remove('active');
+                }
+            });
+
+        });
+    </script>
+
+    <!-- Firebase Signup Script -->
+    <script type="module">
+        // Import Firebase modules
+        import { auth, db } from './firebase-config.js';
+        import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+        import { doc, setDoc } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+
+        // Get form elements
+        const signupForm = document.getElementById('signupForm');
+        const fullNameInput = document.getElementById('fullName');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+        const gradeLevelInput = document.getElementById('gradeLevel');
+        const newsletterInput = document.getElementById('newsletter');
+        const termsInput = document.getElementById('terms');
+        const signupButton = document.getElementById('signupButton');
+        const buttonText = document.getElementById('buttonText');
+        const buttonSpinner = document.getElementById('buttonSpinner');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+
+        // Handle signup form submission
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Prevent default form submission
+            
+            // Get form values
+            const fullName = fullNameInput.value.trim();
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+            const gradeLevel = gradeLevelInput.value;
+            const newsletter = newsletterInput.checked;
+            const termsAccepted = termsInput.checked;
+
+            // Hide any previous messages
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+
+            // Validate passwords match
+            if (password !== confirmPassword) {
+                errorMessage.textContent = 'Passwords do not match. Please try again.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            // Validate password length
+            if (password.length < 6) {
+                errorMessage.textContent = 'Password must be at least 6 characters long.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            // Validate terms acceptance
+            if (!termsAccepted) {
+                errorMessage.textContent = 'You must agree to the Terms of Service and Privacy Policy.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            // Show loading state
+            buttonText.style.display = 'none';
+            buttonSpinner.style.display = 'inline';
+            signupButton.disabled = true;
+
+            try {
+                // Create user account with Firebase Authentication
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // Update user profile with display name
+                await updateProfile(user, {
+                    displayName: fullName
+                });
+
+                // Save additional user data to Firestore database
+                await setDoc(doc(db, 'users', user.uid), {
+                    fullName: fullName,
+                    email: email,
+                    gradeLevel: gradeLevel || null,
+                    newsletter: newsletter,
+                    createdAt: new Date().toISOString(),
+                    children: [] // Empty array to store children later
+                });
+
+                // Send email verification
+                await sendEmailVerification(user);
+
+                // Success! Show success message
+                successMessage.textContent = 'Account created successfully! Verification email sent. Redirecting to dashboard...';
+                successMessage.style.display = 'block';
+
+                // Redirect to family dashboard after 2 seconds
+                setTimeout(() => {
+                    window.location.href = 'family-dashboard.html';
+                }, 2000);
+
+            } catch (error) {
+                // Handle errors
+                console.error('Signup error:', error);
+                
+                // Show user-friendly error message
+                let errorText = 'Signup failed. Please try again.';
+                
+                if (error.code === 'auth/email-already-in-use') {
+                    errorText = 'This email is already registered. Please login or use a different email.';
+                } else if (error.code === 'auth/invalid-email') {
+                    errorText = 'Invalid email address format.';
+                } else if (error.code === 'auth/weak-password') {
+                    errorText = 'Password is too weak. Please use a stronger password.';
+                } else if (error.code === 'auth/network-request-failed') {
+                    errorText = 'Network error. Please check your internet connection.';
+                }
+
+                errorMessage.textContent = errorText;
+                errorMessage.style.display = 'block';
+
+                // Reset button state
+                buttonText.style.display = 'inline';
+                buttonSpinner.style.display = 'none';
+                signupButton.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

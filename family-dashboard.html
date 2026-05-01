@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Dashboard - HomeLearn Academy</title>
+    <meta name="description" content="Manage multiple children's homeschool curriculum in one place">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><a href="index.html">HomeLearn Academy</a></h1>
+                    <p class="tagline">K-5 Homeschool Curriculum Made Simple</p>
+                </div>
+                
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <nav class="main-navigation" role="navigation">
+                    <ul class="nav-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="has-submenu">
+                            <a href="#grades">Grade Levels</a>
+                            <ul class="submenu">
+                                <li><a href="kindergarten.html">Kindergarten</a></li>
+                                <li><a href="grade1.html">1st Grade</a></li>
+                                <li><a href="grade2.html">2nd Grade</a></li>
+                                <li><a href="grade3.html">3rd Grade</a></li>
+                                <li><a href="grade4.html">4th Grade</a></li>
+                                <li><a href="grade5.html">5th Grade</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="resources.html">Free Resources</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="family-dashboard.html" class="active">Family Dashboard</a></li>
+                        <li><span id="userName" style="color: #6366f1; font-weight: 500;"></span></li>
+                        <li><a href="#" id="logoutButton" class="btn-nav-premium">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="dashboard-hero">
+            <div class="container">
+                <div class="dashboard-header">
+                    <div>
+                        <h1>👨‍👩‍👧‍👦 Family Dashboard</h1>
+                        <p>Welcome back! Manage all your children's learning in one place.</p>
+                    </div>
+                    <button onclick="openModal('addChildModal')" class="btn-primary">
+                        <i class="fas fa-plus"></i> Add Child
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="children-overview">
+            <div class="container">
+                <h2>Your Children</h2>
+                <div class="children-grid" id="childrenGrid">
+                    <!-- Add First Child Card -->
+                    <div class="child-card add-child-card" onclick="openModal('addChildModal')">
+                        <div class="add-child-content">
+                            <i class="fas fa-plus-circle"></i>
+                            <h3>Add Your First Child</h3>
+                            <p>Get started by adding your child's information</p>
+                        </div>
+                    </div>
+
+                    <!-- Add Another Child Card (will show after first child is added) -->
+                    <div class="child-card add-child-card" onclick="openModal('addChildModal')" style="display: none;" id="addAnotherChildCard">
+                        <div class="add-child-content">
+                            <i class="fas fa-plus-circle"></i>
+                            <h3>Add Another Child</h3>
+                            <p>One subscription covers unlimited children</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="family-progress">
+            <div class="container">
+                <h2>Family Progress This Week</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-calendar-day"></i>
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">School Days</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-book-open"></i>
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Lessons Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-clock"></i>
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Hours Logged</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-trophy"></i>
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Achievements</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="quick-actions">
+            <div class="container">
+                <h2>Quick Actions</h2>
+                <div class="actions-grid">
+                    <div class="action-card">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>Weekly Planner</h3>
+                        <p>View and customize this week's schedule</p>
+                        <button class="btn-secondary" onclick="alert('Weekly Planner feature coming soon!')">Open Planner</button>
+                    </div>
+                    <div class="action-card">
+                        <i class="fas fa-print"></i>
+                        <h3>Print Worksheets</h3>
+                        <p>Access printable materials for all children</p>
+                        <button class="btn-secondary" onclick="alert('Printable worksheets coming soon!')">Browse Worksheets</button>
+                    </div>
+                    <div class="action-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Progress Reports</h3>
+                        <p>Generate detailed reports for each child</p>
+                        <button class="btn-secondary" onclick="alert('Progress reports feature coming soon!')">View Reports</button>
+                    </div>
+                    <div class="action-card">
+                        <i class="fas fa-book"></i>
+                        <h3>Resource Library</h3>
+                        <p>Browse all free and premium resources</p>
+                        <button class="btn-secondary" onclick="window.location.href='resources.html'">Explore Resources</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="upcoming-lessons">
+            <div class="container">
+                <h2>Today's Lessons</h2>
+                <div class="lessons-container">
+                    <div style="text-align: center; padding: 60px 20px; background: #f9fafb; border-radius: 12px;">
+                        <i class="fas fa-book-open" style="font-size: 3em; color: #9ca3af; margin-bottom: 20px;"></i>
+                        <h3 style="color: #6b7280; margin-bottom: 10px;">No Lessons Yet</h3>
+                        <p style="color: #9ca3af;">Lesson plans will appear here once curriculum content is added.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Add Child Modal -->
+    <div id="addChildModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('addChildModal')">&times;</button>
+            <h2>➕ Add a Child</h2>
+            <form id="addChildForm" class="child-form">
+                <div class="form-group">
+                    <label for="childName">Child's Name</label>
+                    <input type="text" id="childName" placeholder="Enter first name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="childGrade">Grade Level</label>
+                    <select id="childGrade" required>
+                        <option value="">Select grade...</option>
+                        <option value="K">Kindergarten</option>
+                        <option value="1">1st Grade</option>
+                        <option value="2">2nd Grade</option>
+                        <option value="3">3rd Grade</option>
+                        <option value="4">4th Grade</option>
+                        <option value="5">5th Grade</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Choose Avatar Color</label>
+                    <div class="color-picker">
+                        <div class="color-option" data-color="purple" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                        <div class="color-option" data-color="pink" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                        <div class="color-option" data-color="blue" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                        <div class="color-option" data-color="green" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
+                        <div class="color-option" data-color="orange" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+                        <div class="color-option" data-color="teal" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);"></div>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Add Child</button>
+                    <button type="button" onclick="closeModal('addChildModal')" class="btn-secondary">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="state-compliance.html">State Compliance</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Grade Levels</h4>
+                    <ul>
+                        <li><a href="kindergarten.html">Kindergarten</a></li>
+                        <li><a href="grade3.html">3rd Grade</a></li>
+                        <li><a href="#">All Grades</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="faqs.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="forum.html">Community Forum</a></li>
+                        <li><a href="blog.html">Teaching Tips Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Stay Informed</h4>
+                    <p>Join our newsletter for weekly homeschool tips and curriculum updates!</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 HomeLearn Academy. All rights reserved.</p>
+                <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const navigation = document.querySelector('.main-navigation');
+            
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', function() {
+                    navigation.classList.toggle('active');
+                    mobileToggle.classList.toggle('active');
+                });
+            }
+
+            // Color picker functionality
+            const colorOptions = document.querySelectorAll('.color-option');
+            let selectedColor = 'purple'; // default
+            
+            colorOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    colorOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedColor = this.getAttribute('data-color');
+                });
+            });
+            
+            // Set default color as selected
+            if (colorOptions.length > 0) {
+                colorOptions[0].classList.add('selected');
+            }
+        });
+
+        // Modal functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal')) {
+                closeModal(e.target.id);
+            }
+        });
+
+        // Child dashboard functions
+        function viewChildDashboard(childId) {
+            alert(`Opening dashboard for child ${childId} (This is a demo)`);
+        }
+
+        function startLesson(childId) {
+            alert(`Starting lesson for child ${childId} (This is a demo)`);
+        }
+    </script>
+
+    <!-- Firebase Authentication Check -->
+    <script type="module">
+        // Import Firebase modules
+        import { auth, db } from './firebase-config.js';
+        import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+        import { collection, addDoc, getDocs, query, where, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+        import { logout } from './auth-check.js';
+
+        let currentUser = null;
+        let selectedColor = 'purple';
+
+        // Color gradient mapping
+        const colorGradients = {
+            purple: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            pink: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+            blue: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+            green: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+            orange: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+            teal: 'linear-gradient(135deg, #30cfd0 0%, #330867 100%)'
+        };
+
+        // Check authentication and load children
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            currentUser = user;
+            
+            // Display user's name
+            const userNameElement = document.getElementById('userName');
+            if (userNameElement) {
+                userNameElement.textContent = user.displayName || user.email;
+            }
+
+            // Load children from database
+            await loadChildren();
+        });
+
+        // Load children from Firestore
+        async function loadChildren() {
+            try {
+                const childrenGrid = document.getElementById('childrenGrid');
+                const q = query(collection(db, 'children'), where('userId', '==', currentUser.uid));
+                const querySnapshot = await getDocs(q);
+                
+                // Clear existing children (except add cards)
+                const existingChildren = childrenGrid.querySelectorAll('.child-card:not(.add-child-card)');
+                existingChildren.forEach(card => card.remove());
+
+                if (querySnapshot.empty) {
+                    // No children yet - show "Add First Child" card
+                    document.querySelector('.add-child-card').style.display = 'flex';
+                    document.getElementById('addAnotherChildCard').style.display = 'none';
+                } else {
+                    // Hide "Add First Child", show "Add Another Child"
+                    document.querySelector('.add-child-card').style.display = 'none';
+                    document.getElementById('addAnotherChildCard').style.display = 'flex';
+
+                    // Display each child
+                    querySnapshot.forEach((docSnapshot) => {
+                        const childData = docSnapshot.data();
+                        const childCard = createChildCard(childData, docSnapshot.id);
+                        childrenGrid.insertBefore(childCard, document.getElementById('addAnotherChildCard'));
+                    });
+
+                    // Load today's lessons for children
+                    await loadTodaysLessons(querySnapshot);
+                }
+            } catch (error) {
+                console.error('Error loading children:', error);
+                alert('Error loading children. Please refresh the page.');
+            }
+        }
+
+        // Load today's lessons
+        async function loadTodaysLessons(childrenSnapshot) {
+            try {
+                const lessonsContainer = document.querySelector('.lessons-container');
+                
+                // Get all children's grades
+                const children = [];
+                childrenSnapshot.forEach(doc => {
+                    children.push({ id: doc.id, ...doc.data() });
+                });
+
+                if (children.length === 0) return;
+
+                // Get lessons for children's grades
+                const lessonsQuery = query(collection(db, 'lessons'));
+                const lessonsSnapshot = await getDocs(lessonsQuery);
+
+                if (lessonsSnapshot.empty) {
+                    lessonsContainer.innerHTML = `
+                        <div style="text-align: center; padding: 60px 20px; background: #f9fafb; border-radius: 12px;">
+                            <i class="fas fa-book-open" style="font-size: 3em; color: #9ca3af; margin-bottom: 20px;"></i>
+                            <h3 style="color: #6b7280; margin-bottom: 10px;">No Lessons Available</h3>
+                            <p style="color: #9ca3af;">Add lessons to the database to get started.</p>
+                            <a href="seed-lessons.html" style="display: inline-block; margin-top: 20px; padding: 12px 24px; background: #6366f1; color: white; text-decoration: none; border-radius: 8px;">Add Sample Lessons</a>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // Display lessons for each child
+                lessonsContainer.innerHTML = '';
+                let lessonCount = 0;
+
+                children.forEach(child => {
+                    lessonsSnapshot.forEach(lessonDoc => {
+                        const lesson = lessonDoc.data();
+                        
+                        // Match lesson grade to child's grade
+                        if (lesson.gradeCode === child.grade) {
+                            const lessonCard = createLessonCard(lesson, lessonDoc.id, child);
+                            lessonsContainer.appendChild(lessonCard);
+                            lessonCount++;
+                        }
+                    });
+                });
+
+                if (lessonCount === 0) {
+                    lessonsContainer.innerHTML = `
+                        <div style="text-align: center; padding: 60px 20px; background: #f9fafb; border-radius: 12px;">
+                            <i class="fas fa-book-open" style="font-size: 3em; color: #9ca3af; margin-bottom: 20px;"></i>
+                            <h3 style="color: #6b7280; margin-bottom: 10px;">No Lessons for This Grade</h3>
+                            <p style="color: #9ca3af;">Lessons for ${children[0].grade === 'K' ? 'Kindergarten' : 'Grade ' + children[0].grade} will be added soon.</p>
+                        </div>
+                    `;
+                }
+
+            } catch (error) {
+                console.error('Error loading lessons:', error);
+            }
+        }
+
+        // Create lesson card
+        function createLessonCard(lesson, lessonId, child) {
+            const card = document.createElement('div');
+            card.className = 'lesson-card';
+
+            const gradient = colorGradients[child.color] || colorGradients.purple;
+            const childTag = `${child.name} - ${child.grade}`;
+
+            const subjectIcons = {
+                'Reading & Phonics': 'fa-book-reader',
+                'Mathematics': 'fa-calculator',
+                'Science': 'fa-flask',
+                'Social Studies': 'fa-globe',
+                'Art': 'fa-palette'
+            };
+
+            const icon = subjectIcons[lesson.subject] || 'fa-book';
+
+            card.innerHTML = `
+                <div class="lesson-header">
+                    <div class="child-tag" style="background: ${gradient};">${childTag}</div>
+                    <span class="lesson-time">${lesson.duration}</span>
+                </div>
+                <h3><i class="fas ${icon}"></i> ${lesson.subject}</h3>
+                <p>${lesson.title}</p>
+                <div class="lesson-actions">
+                    <button class="btn-start-small" onclick="startLesson('${lessonId}', '${child.id}')">Start Lesson</button>
+                    <button class="btn-preview" onclick="previewLesson('${lessonId}')">Preview</button>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Create child card HTML element
+        function createChildCard(childData, childId) {
+            const card = document.createElement('div');
+            card.className = 'child-card';
+            card.setAttribute('data-child-id', childId);
+
+            const gradient = colorGradients[childData.color] || colorGradients.purple;
+            const initial = childData.name.charAt(0).toUpperCase();
+            const gradeBadge = childData.grade === 'K' ? 'K' : childData.grade;
+
+            const completedCount = childData.completedLessons ? childData.completedLessons.length : 0;
+
+            card.innerHTML = `
+                <div class="child-avatar" style="background: ${gradient};">
+                    <span class="avatar-initial">${initial}</span>
+                    <div class="avatar-badge">${gradeBadge}</div>
+                </div>
+                <div class="child-info">
+                    <h3>${childData.name}</h3>
+                    <p class="child-grade">${getGradeLabel(childData.grade)}</p>
+                    <div class="progress-summary">
+                        <div class="progress-item">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>0 days this month</span>
+                        </div>
+                        <div class="progress-item">
+                            <i class="fas fa-star"></i>
+                            <span>${completedCount} lesson${completedCount !== 1 ? 's' : ''} completed</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="child-actions">
+                    <button onclick="viewChildDashboard('${childId}')" class="btn-view">View Dashboard</button>
+                    <button onclick="startTodaysLesson('${childId}', '${childData.grade}')" class="btn-start">Start Today's Lesson</button>
+                    <button onclick="deleteChild('${childId}', '${childData.name}')" class="btn-delete" style="margin-top: 10px; background: #ef4444;">
+                        <i class="fas fa-trash"></i> Remove
+                    </button>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Get grade label
+        function getGradeLabel(grade) {
+            const labels = {
+                'K': 'Kindergarten',
+                '1': '1st Grade',
+                '2': '2nd Grade',
+                '3': '3rd Grade',
+                '4': '4th Grade',
+                '5': '5th Grade'
+            };
+            return labels[grade] || grade;
+        }
+
+        // Add child to database
+        document.getElementById('addChildForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const childName = document.getElementById('childName').value.trim();
+            const childGrade = document.getElementById('childGrade').value;
+
+            if (!childName || !childGrade) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            try {
+                // Add to Firestore
+                await addDoc(collection(db, 'children'), {
+                    userId: currentUser.uid,
+                    name: childName,
+                    grade: childGrade,
+                    color: selectedColor,
+                    createdAt: new Date().toISOString()
+                });
+
+                // Close modal and reset form
+                closeModal('addChildModal');
+                document.getElementById('addChildForm').reset();
+                
+                // Reset color selection
+                document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
+                document.querySelectorAll('.color-option')[0].classList.add('selected');
+                selectedColor = 'purple';
+
+                // Reload children
+                await loadChildren();
+
+            } catch (error) {
+                console.error('Error adding child:', error);
+                alert('Error adding child. Please try again.');
+            }
+        });
+
+        // Delete child
+        window.deleteChild = async function(childId, childName) {
+            if (!confirm(`Are you sure you want to remove ${childName}?`)) {
+                return;
+            }
+
+            try {
+                await deleteDoc(doc(db, 'children', childId));
+                await loadChildren();
+            } catch (error) {
+                console.error('Error deleting child:', error);
+                alert('Error removing child. Please try again.');
+            }
+        };
+
+        // Handle logout button click
+        document.getElementById('logoutButton').addEventListener('click', (e) => {
+            e.preventDefault();
+            if (confirm('Are you sure you want to logout?')) {
+                logout();
+            }
+        });
+
+        // Make functions globally available
+        window.viewChildDashboard = function(childId) {
+            window.location.href = `child-dashboard.html?id=${childId}`;
+        };
+
+        window.startTodaysLesson = async function(childId, grade) {
+            // Find first lesson for this grade
+            try {
+                const lessonsQuery = query(collection(db, 'lessons'));
+                const lessonsSnapshot = await getDocs(lessonsQuery);
+                
+                let firstLesson = null;
+                lessonsSnapshot.forEach(lessonDoc => {
+                    const lesson = lessonDoc.data();
+                    if (lesson.gradeCode === grade && !firstLesson) {
+                        firstLesson = lessonDoc.id;
+                    }
+                });
+
+                if (firstLesson) {
+                    window.location.href = `lesson.html?id=${firstLesson}&child=${childId}`;
+                } else {
+                    alert('No lessons available for this grade yet.');
+                }
+            } catch (error) {
+                console.error('Error finding lesson:', error);
+                alert('Error loading lesson. Please try again.');
+            }
+        };
+
+        window.startLesson = function(lessonId, childId) {
+            window.location.href = `lesson.html?id=${lessonId}&child=${childId}`;
+        };
+
+        window.previewLesson = function(lessonId) {
+            window.open(`lesson.html?id=${lessonId}`, '_blank');
+        };
+    </script>
+
+    <style>
+        .dashboard-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 0;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .dashboard-header h1 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-header p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .children-overview {
+            padding: 60px 0;
+        }
+
+        .children-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .child-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .child-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .child-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .avatar-initial {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: white;
+        }
+
+        .avatar-badge {
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            background: white;
+            color: #333;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .child-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .child-info h3 {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .child-grade {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .progress-summary {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            text-align: left;
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .progress-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .progress-item i {
+            color: #6366f1;
+        }
+
+        .child-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-view, .btn-start {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-view {
+            background: #f3f4f6;
+            color: #333;
+        }
+
+        .btn-view:hover {
+            background: #e5e7eb;
+        }
+
+        .btn-start {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-start:hover {
+            background: #4f46e5;
+        }
+
+        .add-child-card {
+            border: 2px dashed #d1d5db;
+            background: #f9fafb;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .add-child-card:hover {
+            border-color: #6366f1;
+            background: #eff6ff;
+        }
+
+        .add-child-content {
+            text-align: center;
+        }
+
+        .add-child-content i {
+            font-size: 3em;
+            color: #6366f1;
+            margin-bottom: 15px;
+        }
+
+        .add-child-content h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .add-child-content p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .family-progress {
+            background: #f9fafb;
+            padding: 60px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-card i {
+            font-size: 2.5em;
+            color: #6366f1;
+            margin-bottom: 15px;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .quick-actions {
+            padding: 60px 0;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .action-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .action-card i {
+            font-size: 2.5em;
+            color: #6366f1;
+            margin-bottom: 15px;
+        }
+
+        .action-card h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .action-card p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+
+        .upcoming-lessons {
+            background: #f9fafb;
+            padding: 60px 0;
+        }
+
+        .lessons-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .lesson-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .lesson-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .child-tag {
+            padding: 5px 12px;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .lesson-time {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .lesson-card h3 {
+            color: #333;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lesson-card h3 i {
+            color: #6366f1;
+        }
+
+        .lesson-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .lesson-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-start-small, .btn-preview {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-start-small {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-start-small:hover {
+            background: #4f46e5;
+        }
+
+        .btn-preview {
+            background: #f3f4f6;
+            color: #333;
+        }
+
+        .btn-preview:hover {
+            background: #e5e7eb;
+        }
+
+        .child-form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .color-picker {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+        }
+
+        .color-option {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+
+        .color-option.selected {
+            border-color: #333;
+            box-shadow: 0 0 0 2px white, 0 0 0 4px #333;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .form-actions button {
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .children-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .actions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lessons-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</body>
+</html>

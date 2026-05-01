@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeLearn Academy - K-5 Homeschool Curriculum</title>
+    <meta name="description" content="Comprehensive K-5 homeschool curriculum combining the best free resources with expert lesson planning and parent support.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><a href="index.html">HomeLearn Academy</a></h1>
+                    <p class="tagline">K-5 Homeschool Curriculum Made Simple</p>
+                </div>
+                
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <nav class="main-navigation" role="navigation">
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li class="has-submenu">
+                            <a href="#grades">Grade Levels</a>
+                            <ul class="submenu">
+                                <li><a href="kindergarten.html">Kindergarten</a></li>
+                                <li><a href="grade1.html">1st Grade</a></li>
+                                <li><a href="grade2.html">2nd Grade</a></li>
+                                <li><a href="grade3.html">3rd Grade</a></li>
+                                <li><a href="grade4.html">4th Grade</a></li>
+                                <li><a href="grade5.html">5th Grade</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="resources.html">Free Resources</a></li>
+                        <li><a href="state-compliance.html">State Compliance</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="family-dashboard.html">Family Dashboard</a></li>
+                        <li><a href="pricing.html" class="btn-nav-premium">Go Premium</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="mascot-welcome">
+                        <div class="sunny-star">⭐</div>
+                        <div class="speech-bubble">Hi! I'm Sunny! Let's learn something AMAZING today!</div>
+                    </div>
+                    <h1>🌈 Learning is an Adventure! 🚀</h1>
+                    <p class="hero-subtitle">Join thousands of kids having FUN while learning reading, math, science, and so much more!</p>
+                    <div class="hero-actions">
+                        <a href="pricing.html" class="btn-primary-large">🎉 Start Your Adventure!</a>
+                        <button onclick="openModal('quickStartModal')" class="btn-secondary">📚 How It Works</button>
+                    </div>
+                    <p class="hero-note">⭐ Fun for ages 4-10  ⭐ Learn at your own pace  ⭐ Parents love it too!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="problem-section">
+            <div class="container">
+                <h2>The Homeschool Parent's Challenge</h2>
+                <div class="problem-grid">
+                    <div class="problem-card">
+                        <i class="fas fa-search"></i>
+                        <h3>Too Many Resources</h3>
+                        <p>Spending hours searching for quality materials across dozens of websites</p>
+                    </div>
+                    <div class="problem-card">
+                        <i class="fas fa-puzzle-piece"></i>
+                        <h3>Missing Pieces</h3>
+                        <p>Khan Academy is great for math, but what about writing, art, and life skills?</p>
+                    </div>
+                    <div class="problem-card">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>No Clear Plan</h3>
+                        <p>How do you organize everything into a cohesive daily schedule?</p>
+                    </div>
+                    <div class="problem-card">
+                        <i class="fas fa-question-circle"></i>
+                        <h3>Teaching Uncertainty</h3>
+                        <p>Wondering if you're covering everything your child needs to learn</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="solution-section" id="how-it-works">
+            <div class="container">
+                <h2>We've Done the Work For You</h2>
+                <p class="section-subtitle">HomeLearn Academy curates the best free resources and adds the structure, lesson plans, and support you need.</p>
+                
+                <div class="solution-grid">
+                    <div class="solution-card">
+                        <div class="solution-number">1</div>
+                        <h3>Curated Resources</h3>
+                        <p>We've vetted and organized the best free educational content from Khan Academy, PBS, and more.</p>
+                    </div>
+                    <div class="solution-card">
+                        <div class="solution-number">2</div>
+                        <h3>Complete Lesson Plans</h3>
+                        <p>Daily schedules with step-by-step instructions for every subject, every day of the school year.</p>
+                    </div>
+                    <div class="solution-card">
+                        <div class="solution-number">3</div>
+                        <h3>Fill the Gaps</h3>
+                        <p>Original writing curriculum, literature guides, art lessons, and life skills that free resources miss.</p>
+                    </div>
+                    <div class="solution-card">
+                        <div class="solution-number">4</div>
+                        <h3>Parent Support</h3>
+                        <p>Teaching tips, grading rubrics, and guidance so you feel confident every step of the way.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="grade-overview-section">
+            <div class="container">
+                <h2>Choose Your Grade Level</h2>
+                <p class="section-subtitle">Click any grade to see the complete curriculum overview</p>
+                
+                <div class="grade-grid">
+                    <a href="kindergarten.html" class="grade-card kindergarten">
+                        <div class="grade-icon">K</div>
+                        <h3>Kindergarten</h3>
+                        <p>Ages 5-6</p>
+                        <ul class="grade-highlights">
+                            <li>Letter recognition & phonics</li>
+                            <li>Numbers & counting</li>
+                            <li>Creative play & art</li>
+                        </ul>
+                    </a>
+                    
+                    <a href="grade1.html" class="grade-card grade1">
+                        <div class="grade-icon">1</div>
+                        <h3>First Grade</h3>
+                        <p>Ages 6-7</p>
+                        <ul class="grade-highlights">
+                            <li>Reading fundamentals</li>
+                            <li>Addition & subtraction</li>
+                            <li>Science exploration</li>
+                        </ul>
+                    </a>
+                    
+                    <a href="grade2.html" class="grade-card grade2">
+                        <div class="grade-icon">2</div>
+                        <h3>Second Grade</h3>
+                        <p>Ages 7-8</p>
+                        <ul class="grade-highlights">
+                            <li>Reading comprehension</li>
+                            <li>Place value & time</li>
+                            <li>Community & culture</li>
+                        </ul>
+                    </a>
+                    
+                    <a href="grade3.html" class="grade-card grade3">
+                        <div class="grade-icon">3</div>
+                        <h3>Third Grade</h3>
+                        <p>Ages 8-9</p>
+                        <ul class="grade-highlights">
+                            <li>Multiplication & division</li>
+                            <li>Writing paragraphs</li>
+                            <li>Earth & space science</li>
+                        </ul>
+                    </a>
+                    
+                    <a href="grade4.html" class="grade-card grade4">
+                        <div class="grade-icon">4</div>
+                        <h3>Fourth Grade</h3>
+                        <p>Ages 9-10</p>
+                        <ul class="grade-highlights">
+                            <li>Fractions & decimals</li>
+                            <li>Research & writing</li>
+                            <li>U.S. history & geography</li>
+                        </ul>
+                    </a>
+                    
+                    <a href="grade5.html" class="grade-card grade5">
+                        <div class="grade-icon">5</div>
+                        <h3>Fifth Grade</h3>
+                        <p>Ages 10-11</p>
+                        <ul class="grade-highlights">
+                            <li>Pre-algebra concepts</li>
+                            <li>Essay writing</li>
+                            <li>Life & physical science</li>
+                        </ul>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="subjects-section">
+            <div class="container">
+                <h2>All Subjects Covered</h2>
+                <div class="subjects-grid">
+                    <div class="subject-card">
+                        <i class="fas fa-book-open"></i>
+                        <h3>Language Arts</h3>
+                        <p>Reading, writing, grammar, spelling, and literature</p>
+                    </div>
+                    <div class="subject-card">
+                        <i class="fas fa-calculator"></i>
+                        <h3>Mathematics</h3>
+                        <p>Number sense, operations, geometry, and problem-solving</p>
+                    </div>
+                    <div class="subject-card">
+                        <i class="fas fa-flask"></i>
+                        <h3>Science</h3>
+                        <p>Life science, earth science, physical science, and experiments</p>
+                    </div>
+                    <div class="subject-card">
+                        <i class="fas fa-globe-americas"></i>
+                        <h3>Social Studies</h3>
+                        <p>History, geography, cultures, and citizenship</p>
+                    </div>
+                    <div class="subject-card">
+                        <i class="fas fa-palette"></i>
+                        <h3>Arts</h3>
+                        <p>Visual arts, music appreciation, and creative expression</p>
+                    </div>
+                    <div class="subject-card">
+                        <i class="fas fa-running"></i>
+                        <h3>Physical Education</h3>
+                        <p>Movement activities, health, and wellness</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pricing-preview-section">
+            <div class="container">
+                <h2>Free to Start, Premium to Excel</h2>
+                <div class="pricing-comparison">
+                    <div class="pricing-card free-tier">
+                        <h3>Free Access</h3>
+                        <div class="price">$0<span>/forever</span></div>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> Grade-level curriculum overview</li>
+                            <li><i class="fas fa-check"></i> Links to free resources (Khan Academy, PBS, etc.)</li>
+                            <li><i class="fas fa-check"></i> Sample weekly schedules</li>
+                            <li><i class="fas fa-check"></i> 2 sample lesson plans per grade</li>
+                            <li><i class="fas fa-check"></i> Community forum access</li>
+                        </ul>
+                        <a href="pricing.html" class="btn-outline">Get Started Free</a>
+                    </div>
+                    
+                    <div class="pricing-card premium-tier featured">
+                        <div class="featured-badge">Most Popular</div>
+                        <h3>Premium Access</h3>
+                        <div class="price">$19<span>/month</span></div>
+                        <p class="price-note">or $180/year (save $48)</p>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> <strong>Everything in Free, plus:</strong></li>
+                            <li><i class="fas fa-check"></i> Complete daily lesson plans (180 days)</li>
+                            <li><i class="fas fa-check"></i> Printable worksheets & activities</li>
+                            <li><i class="fas fa-check"></i> Original writing curriculum</li>
+                            <li><i class="fas fa-check"></i> Literature study guides</li>
+                            <li><i class="fas fa-check"></i> Grading rubrics & answer keys</li>
+                            <li><i class="fas fa-check"></i> Progress tracking dashboard</li>
+                            <li><i class="fas fa-check"></i> Video teaching tutorials</li>
+                            <li><i class="fas fa-check"></i> Customizable schedules</li>
+                            <li><i class="fas fa-check"></i> Priority email support</li>
+                        </ul>
+                        <a href="pricing.html" class="btn-primary-large">Start 14-Day Free Trial</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials-section">
+            <div class="container">
+                <h2>Join Our Early Access Community</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="stars">🚀</div>
+                        <p><strong>Be a Founding Member</strong><br>Join us as we launch in 2026! Early access members get special pricing and help shape our curriculum.</p>
+                        <div class="testimonial-author">
+                            <strong>Limited Spots Available</strong>
+                            <span>Free trial - no credit card required</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">📚</div>
+                        <p><strong>Complete K-5 Curriculum</strong><br>We're building a comprehensive homeschool program designed by educators, tested by real families.</p>
+                        <div class="testimonial-author">
+                            <strong>Launching 2026</strong>
+                            <span>Sign up for early access updates</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">💡</div>
+                        <p><strong>Your Feedback Matters</strong><br>As an early member, you'll have direct input on features, lessons, and curriculum development.</p>
+                        <div class="testimonial-author">
+                            <strong>Shape the Future</strong>
+                            <span>Help us build something amazing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Start Your Homeschool Journey Today</h2>
+                    <p>Join hundreds of parents who've simplified their homeschool experience</p>
+                    <div class="cta-buttons">
+                        <a href="pricing.html" class="btn-primary-large">Start 14-Day Free Trial</a>
+                        <a href="kindergarten.html" class="btn-secondary">Browse Free Curriculum</a>
+                    </div>
+                    <p class="cta-note">No credit card required for free access • Cancel anytime</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Grade Levels</h4>
+                    <ul>
+                        <li><a href="kindergarten.html">Kindergarten</a></li>
+                        <li><a href="grade1.html">1st Grade</a></li>
+                        <li><a href="grade2.html">2nd Grade</a></li>
+                        <li><a href="grade3.html">3rd Grade</a></li>
+                        <li><a href="grade4.html">4th Grade</a></li>
+                        <li><a href="grade5.html">5th Grade</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="resources.html">Free Resources</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="dashboard.html">Parent Dashboard</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="faqs.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="forum.html">Community Forum</a></li>
+                        <li><a href="blog.html">Teaching Tips Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Stay Informed</h4>
+                    <p>Join our newsletter for weekly homeschool tips and curriculum updates!</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 HomeLearn Academy. All rights reserved.</p>
+                <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Quick Start Guide Modal -->
+    <div id="quickStartModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('quickStartModal')">&times;</button>
+            <h2>🚀 Quick Start Guide</h2>
+            <p>Get started with HomeLearn Academy in 3 easy steps:</p>
+            <ul>
+                <li><strong>Step 1:</strong> Browse our grade-level curricula and choose your child's grade</li>
+                <li><strong>Step 2:</strong> Review the free sample week to see our teaching approach</li>
+                <li><strong>Step 3:</strong> Start your 14-day free trial to access complete lesson plans</li>
+            </ul>
+            <h3>What's Included?</h3>
+            <ul>
+                <li>✅ Daily lesson plans for all core subjects</li>
+                <li>✅ Curated free online resources</li>
+                <li>✅ Printable worksheets and activities</li>
+                <li>✅ Parent teaching guides and answer keys</li>
+                <li>✅ Progress tracking tools</li>
+            </ul>
+            <a href="pricing.html" class="btn-primary-large" style="margin-top: 20px; display: inline-block;">Start Free Trial</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const navigation = document.querySelector('.main-navigation');
+            
+            mobileToggle.addEventListener('click', function() {
+                navigation.classList.toggle('active');
+                mobileToggle.classList.toggle('active');
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!navigation.contains(e.target) && !mobileToggle.contains(e.target)) {
+                    navigation.classList.remove('active');
+                    mobileToggle.classList.remove('active');
+                }
+            });
+
+            // Add hover effects to cards
+            const cards = document.querySelectorAll('.subject-card, .feature-card, .support-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+
+        // Modal functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal')) {
+                closeModal(e.target.id);
+            }
+        });
+
+        // Accordion functionality
+        function initAccordions() {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const item = this.parentElement;
+                    const wasActive = item.classList.contains('active');
+                    
+                    // Close all accordions
+                    document.querySelectorAll('.accordion-item').forEach(i => {
+                        i.classList.remove('active');
+                    });
+                    
+                    // Open clicked accordion if it wasn't active
+                    if (!wasActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        // Initialize accordions when DOM is ready
+        document.addEventListener('DOMContentLoaded', initAccordions);
+    </script>
+</body>
+</html>

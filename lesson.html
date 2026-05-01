@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson - HomeLearn Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><a href="index.html">HomeLearn Academy</a></h1>
+                    <p class="tagline">K-5 Homeschool Curriculum Made Simple</p>
+                </div>
+                
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <nav class="main-navigation" role="navigation">
+                    <ul class="nav-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="family-dashboard.html">Dashboard</a></li>
+                        <li><span id="userName" style="color: #6366f1; font-weight: 500;"></span></li>
+                        <li><a href="#" id="logoutButton" class="btn-nav-premium">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="lesson-container">
+            <div class="container">
+                <!-- Lesson Header -->
+                <div class="lesson-header-section">
+                    <button onclick="window.history.back()" class="btn-back">
+                        <i class="fas fa-arrow-left"></i> Back to Dashboard
+                    </button>
+                    <div class="lesson-meta" id="lessonMeta">
+                        <span class="child-badge" id="childBadge"></span>
+                        <span class="subject-badge" id="subjectBadge"></span>
+                    </div>
+                </div>
+
+                <!-- Lesson Content -->
+                <div class="lesson-content-area">
+                    <h1 id="lessonTitle">Loading lesson...</h1>
+                    
+                    <div class="lesson-objectives" id="lessonObjectives">
+                        <h3><i class="fas fa-bullseye"></i> Learning Objectives</h3>
+                        <ul id="objectivesList"></ul>
+                    </div>
+
+                    <div class="lesson-body" id="lessonBody">
+                        <!-- Lesson content will be loaded here -->
+                    </div>
+
+                    <div class="lesson-activities" id="lessonActivities">
+                        <h3><i class="fas fa-tasks"></i> Activities</h3>
+                        <div id="activitiesList"></div>
+                    </div>
+
+                    <div class="lesson-resources" id="lessonResources">
+                        <h3><i class="fas fa-box-open"></i> Materials Needed</h3>
+                        <ul id="resourcesList"></ul>
+                    </div>
+                </div>
+
+                <!-- Lesson Actions -->
+                <div class="lesson-actions-bar">
+                    <button id="markCompleteBtn" class="btn-primary-large">
+                        <i class="fas fa-check-circle"></i> Mark as Complete
+                    </button>
+                    <button onclick="window.history.back()" class="btn-secondary">
+                        Save for Later
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>HomeLearn Academy</h4>
+                    <p>K-5 Homeschool Curriculum Made Simple</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="family-dashboard.html">Dashboard</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HomeLearn Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const navigation = document.querySelector('.main-navigation');
+            
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', function() {
+                    navigation.classList.toggle('active');
+                    mobileToggle.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+
+    <!-- Firebase Lesson Viewer -->
+    <script type="module">
+        import { auth, db } from './firebase-config.js';
+        import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+        import { doc, getDoc, setDoc, updateDoc, arrayUnion } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+        import { logout } from './auth-check.js';
+
+        let currentUser = null;
+        let currentLesson = null;
+        let childId = null;
+
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const lessonId = urlParams.get('id');
+        childId = urlParams.get('child');
+
+        // Check authentication
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            currentUser = user;
+            
+            const userNameElement = document.getElementById('userName');
+            if (userNameElement) {
+                userNameElement.textContent = user.displayName || user.email;
+            }
+
+            if (lessonId) {
+                await loadLesson(lessonId);
+            } else {
+                document.getElementById('lessonTitle').textContent = 'Lesson not found';
+            }
+        });
+
+        // Load lesson from database
+        async function loadLesson(id) {
+            try {
+                const lessonDoc = await getDoc(doc(db, 'lessons', id));
+                
+                if (!lessonDoc.exists()) {
+                    document.getElementById('lessonTitle').textContent = 'Lesson not found';
+                    return;
+                }
+
+                currentLesson = { id: lessonDoc.id, ...lessonDoc.data() };
+                displayLesson(currentLesson);
+            } catch (error) {
+                console.error('Error loading lesson:', error);
+                alert('Error loading lesson. Please try again.');
+            }
+        }
+
+        // Display lesson content
+        function displayLesson(lesson) {
+            document.getElementById('lessonTitle').textContent = lesson.title;
+            
+            // Meta badges
+            document.getElementById('childBadge').innerHTML = `<i class="fas fa-user"></i> ${lesson.grade}`;
+            document.getElementById('subjectBadge').innerHTML = `<i class="fas fa-book"></i> ${lesson.subject}`;
+            
+            // Objectives
+            const objectivesList = document.getElementById('objectivesList');
+            objectivesList.innerHTML = lesson.objectives.map(obj => `<li>${obj}</li>`).join('');
+            
+            // Lesson body
+            document.getElementById('lessonBody').innerHTML = lesson.content;
+            
+            // Activities
+            const activitiesList = document.getElementById('activitiesList');
+            activitiesList.innerHTML = lesson.activities.map((activity, index) => `
+                <div class="activity-card">
+                    <h4><i class="fas fa-play-circle"></i> Activity ${index + 1}: ${activity.title}</h4>
+                    <p>${activity.description}</p>
+                    ${activity.duration ? `<p class="activity-duration"><i class="fas fa-clock"></i> ${activity.duration}</p>` : ''}
+                </div>
+            `).join('');
+            
+            // Resources
+            const resourcesList = document.getElementById('resourcesList');
+            resourcesList.innerHTML = lesson.materials.map(material => `<li>${material}</li>`).join('');
+        }
+
+        // Mark lesson as complete
+        document.getElementById('markCompleteBtn').addEventListener('click', async () => {
+            if (!currentLesson || !childId) {
+                alert('Unable to mark lesson complete. Missing lesson or child information.');
+                return;
+            }
+
+            try {
+                const childRef = doc(db, 'children', childId);
+                const childDoc = await getDoc(childRef);
+
+                if (!childDoc.exists()) {
+                    alert('Child not found');
+                    return;
+                }
+
+                // Update child's completed lessons
+                await updateDoc(childRef, {
+                    completedLessons: arrayUnion(currentLesson.id),
+                    lastActivity: new Date().toISOString()
+                });
+
+                // Record progress entry
+                await setDoc(doc(db, 'progress', `${childId}_${currentLesson.id}_${Date.now()}`), {
+                    childId: childId,
+                    lessonId: currentLesson.id,
+                    userId: currentUser.uid,
+                    completedAt: new Date().toISOString(),
+                    subject: currentLesson.subject,
+                    grade: currentLesson.grade
+                });
+
+                alert('Great job! Lesson marked as complete! 🎉');
+                window.location.href = 'family-dashboard.html';
+
+            } catch (error) {
+                console.error('Error marking lesson complete:', error);
+                alert('Error saving progress. Please try again.');
+            }
+        });
+
+        // Logout handler
+        document.getElementById('logoutButton').addEventListener('click', (e) => {
+            e.preventDefault();
+            if (confirm('Are you sure you want to logout?')) {
+                logout();
+            }
+        });
+    </script>
+
+    <style>
+        .lesson-container {
+            padding: 40px 0;
+            background: #f9fafb;
+            min-height: calc(100vh - 200px);
+        }
+
+        .lesson-header-section {
+            margin-bottom: 30px;
+        }
+
+        .btn-back {
+            background: white;
+            border: 2px solid #e5e7eb;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background: #f9fafb;
+            border-color: #6366f1;
+        }
+
+        .lesson-meta {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .child-badge, .subject-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .subject-badge {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .lesson-content-area {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .lesson-content-area h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .lesson-objectives, .lesson-activities, .lesson-resources {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+
+        .lesson-objectives h3, .lesson-activities h3, .lesson-resources h3 {
+            color: #6366f1;
+            margin-bottom: 15px;
+        }
+
+        .lesson-objectives ul, .lesson-resources ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .lesson-objectives li, .lesson-resources li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .lesson-objectives li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .lesson-resources li:before {
+            content: "•";
+            position: absolute;
+            left: 10px;
+            color: #6366f1;
+            font-weight: bold;
+        }
+
+        .lesson-body {
+            line-height: 1.8;
+            color: #4b5563;
+            margin: 30px 0;
+        }
+
+        .lesson-body p {
+            margin-bottom: 15px;
+        }
+
+        .activity-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #6366f1;
+        }
+
+        .activity-card h4 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .activity-duration {
+            color: #6b7280;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .lesson-actions-bar {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .lesson-content-area {
+                padding: 20px;
+            }
+
+            .lesson-content-area h1 {
+                font-size: 1.8em;
+            }
+
+            .lesson-actions-bar {
+                flex-direction: column;
+            }
+
+            .lesson-actions-bar button {
+                width: 100%;
+            }
+        }
+    </style>
+</body>
+</html>

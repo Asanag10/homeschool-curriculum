@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Child Dashboard - HomeLearn Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><a href="index.html">HomeLearn Academy</a></h1>
+                    <p class="tagline">K-5 Homeschool Curriculum Made Simple</p>
+                </div>
+                
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <nav class="main-navigation" role="navigation">
+                    <ul class="nav-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="family-dashboard.html">Family Dashboard</a></li>
+                        <li><span id="userName"></span></li>
+                        <li><a href="#" id="logoutButton" class="btn-nav-premium">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- Child Hero Section -->
+        <section class="child-hero">
+            <div class="container">
+                <div class="child-hero-content">
+                    <div class="child-avatar-large" id="childAvatarLarge">
+                        <span class="avatar-initial-large" id="avatarInitial"></span>
+                        <div class="avatar-badge-large" id="avatarBadge"></div>
+                    </div>
+                    <div class="child-hero-info">
+                        <h1 id="childName">Loading...</h1>
+                        <p class="child-grade-large" id="childGrade"></p>
+                        <div class="child-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-star"></i>
+                                <div>
+                                    <span class="stat-number" id="completedCount">0</span>
+                                    <span class="stat-label">Lessons Completed</span>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-calendar-check"></i>
+                                <div>
+                                    <span class="stat-number">0</span>
+                                    <span class="stat-label">Days This Month</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Available Lessons -->
+        <section class="child-lessons-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Available Lessons</h2>
+                    <a href="family-dashboard.html" class="btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back to Family Dashboard
+                    </a>
+                </div>
+
+                <div id="lessonsGrid" class="lessons-grid">
+                    <!-- Lessons will be loaded here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>HomeLearn Academy</h4>
+                    <p>K-5 Homeschool Curriculum Made Simple</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="family-dashboard.html">Dashboard</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HomeLearn Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const navigation = document.querySelector('.main-navigation');
+            
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', function() {
+                    navigation.classList.toggle('active');
+                    mobileToggle.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+
+    <!-- Firebase Child Dashboard -->
+    <script type="module">
+        import { auth, db } from './firebase-config.js';
+        import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+        import { doc, getDoc, collection, query, getDocs } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+        import { logout } from './auth-check.js';
+
+        let currentUser = null;
+        let currentChild = null;
+        let childId = null;
+
+        const colorGradients = {
+            purple: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            pink: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+            blue: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+            green: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+            orange: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+            teal: 'linear-gradient(135deg, #30cfd0 0%, #330867 100%)'
+        };
+
+        // Get child ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        childId = urlParams.get('id');
+
+        // Check authentication
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            currentUser = user;
+            
+            const userNameElement = document.getElementById('userName');
+            if (userNameElement) {
+                userNameElement.textContent = user.displayName || user.email;
+            }
+
+            if (childId) {
+                await loadChildData();
+                await loadLessons();
+            } else {
+                alert('No child selected');
+                window.location.href = 'family-dashboard.html';
+            }
+        });
+
+        // Load child data
+        async function loadChildData() {
+            try {
+                const childDoc = await getDoc(doc(db, 'children', childId));
+                
+                if (!childDoc.exists()) {
+                    alert('Child not found');
+                    window.location.href = 'family-dashboard.html';
+                    return;
+                }
+
+                currentChild = { id: childDoc.id, ...childDoc.data() };
+                displayChildInfo(currentChild);
+            } catch (error) {
+                console.error('Error loading child:', error);
+                alert('Error loading child data');
+            }
+        }
+
+        // Display child information
+        function displayChildInfo(child) {
+            const gradient = colorGradients[child.color] || colorGradients.purple;
+            const initial = child.name.charAt(0).toUpperCase();
+            const gradeBadge = child.grade === 'K' ? 'K' : child.grade;
+            const gradeLabel = getGradeLabel(child.grade);
+            const completedCount = child.completedLessons ? child.completedLessons.length : 0;
+
+            document.getElementById('childName').textContent = child.name;
+            document.getElementById('childGrade').textContent = gradeLabel;
+            document.getElementById('avatarInitial').textContent = initial;
+            document.getElementById('avatarBadge').textContent = gradeBadge;
+            document.getElementById('completedCount').textContent = completedCount;
+            
+            const avatarLarge = document.getElementById('childAvatarLarge');
+            avatarLarge.style.background = gradient;
+        }
+
+        // Get grade label
+        function getGradeLabel(grade) {
+            const labels = {
+                'K': 'Kindergarten',
+                '1': '1st Grade',
+                '2': '2nd Grade',
+                '3': '3rd Grade',
+                '4': '4th Grade',
+                '5': '5th Grade'
+            };
+            return labels[grade] || grade;
+        }
+
+        // Load lessons for this child's grade
+        async function loadLessons() {
+            try {
+                const lessonsGrid = document.getElementById('lessonsGrid');
+                const lessonsQuery = query(collection(db, 'lessons'));
+                const lessonsSnapshot = await getDocs(lessonsQuery);
+
+                if (lessonsSnapshot.empty) {
+                    lessonsGrid.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-book-open"></i>
+                            <h3>No Lessons Available</h3>
+                            <p>Lessons will be added soon!</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                lessonsGrid.innerHTML = '';
+                let lessonCount = 0;
+                const completedLessons = currentChild.completedLessons || [];
+
+                lessonsSnapshot.forEach(lessonDoc => {
+                    const lesson = lessonDoc.data();
+                    
+                    if (lesson.gradeCode === currentChild.grade) {
+                        const isCompleted = completedLessons.includes(lessonDoc.id);
+                        const lessonCard = createLessonCard(lesson, lessonDoc.id, isCompleted);
+                        lessonsGrid.appendChild(lessonCard);
+                        lessonCount++;
+                    }
+                });
+
+                if (lessonCount === 0) {
+                    lessonsGrid.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-book-open"></i>
+                            <h3>No Lessons for ${getGradeLabel(currentChild.grade)}</h3>
+                            <p>Lessons for this grade will be added soon!</p>
+                        </div>
+                    `;
+                }
+
+            } catch (error) {
+                console.error('Error loading lessons:', error);
+            }
+        }
+
+        // Create lesson card
+        function createLessonCard(lesson, lessonId, isCompleted) {
+            const card = document.createElement('div');
+            card.className = 'lesson-card-large' + (isCompleted ? ' completed' : '');
+
+            const subjectIcons = {
+                'Reading & Phonics': 'fa-book-reader',
+                'Mathematics': 'fa-calculator',
+                'Science': 'fa-flask',
+                'Social Studies': 'fa-globe',
+                'Art': 'fa-palette'
+            };
+
+            const icon = subjectIcons[lesson.subject] || 'fa-book';
+
+            card.innerHTML = `
+                ${isCompleted ? '<div class="completed-badge"><i class="fas fa-check-circle"></i> Completed</div>' : ''}
+                <div class="lesson-icon">
+                    <i class="fas ${icon}"></i>
+                </div>
+                <div class="lesson-card-content">
+                    <span class="lesson-subject">${lesson.subject}</span>
+                    <h3>${lesson.title}</h3>
+                    <p class="lesson-duration"><i class="fas fa-clock"></i> ${lesson.duration}</p>
+                    <div class="lesson-objectives-preview">
+                        <strong>You'll learn:</strong>
+                        <ul>
+                            ${lesson.objectives.slice(0, 2).map(obj => `<li>${obj}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <button onclick="startLesson('${lessonId}')" class="btn-primary">
+                        <i class="fas fa-play"></i> ${isCompleted ? 'Review Lesson' : 'Start Lesson'}
+                    </button>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Start lesson
+        window.startLesson = function(lessonId) {
+            window.location.href = `lesson.html?id=${lessonId}&child=${childId}`;
+        };
+
+        // Logout handler
+        document.getElementById('logoutButton').addEventListener('click', (e) => {
+            e.preventDefault();
+            if (confirm('Are you sure you want to logout?')) {
+                logout();
+            }
+        });
+    </script>
+
+    <style>
+        .child-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+        }
+
+        .child-hero-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .child-avatar-large {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            flex-shrink: 0;
+        }
+
+        .avatar-initial-large {
+            font-size: 4em;
+            font-weight: bold;
+            color: white;
+        }
+
+        .avatar-badge-large {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: white;
+            color: #667eea;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .child-hero-info h1 {
+            margin: 0 0 10px 0;
+            font-size: 3em;
+        }
+
+        .child-grade-large {
+            font-size: 1.3em;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .child-stats {
+            display: flex;
+            gap: 40px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .stat-item i {
+            font-size: 2.5em;
+            opacity: 0.8;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2em;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .stat-label {
+            display: block;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .child-lessons-section {
+            padding: 60px 0;
+            background: #f9fafb;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .lesson-card-large {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .lesson-card-large:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+
+        .lesson-card-large.completed {
+            border: 2px solid #10b981;
+        }
+
+        .completed-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #10b981;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .lesson-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .lesson-icon i {
+            font-size: 1.8em;
+            color: white;
+        }
+
+        .lesson-subject {
+            display: inline-block;
+            background: #e0e7ff;
+            color: #4f46e5;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .lesson-card-large h3 {
+            margin: 10px 0;
+            color: #333;
+            font-size: 1.4em;
+        }
+
+        .lesson-duration {
+            color: #6b7280;
+            margin: 10px 0;
+        }
+
+        .lesson-objectives-preview {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+
+        .lesson-objectives-preview strong {
+            display: block;
+            margin-bottom: 10px;
+            color: #4b5563;
+        }
+
+        .lesson-objectives-preview ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .lesson-objectives-preview li {
+            margin: 5px 0;
+            color: #6b7280;
+        }
+
+        .lesson-card-large button {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .empty-state i {
+            font-size: 4em;
+            color: #9ca3af;
+            margin-bottom: 20px;
+        }
+
+        .empty-state h3 {
+            color: #6b7280;
+            margin-bottom: 10px;
+        }
+
+        .empty-state p {
+            color: #9ca3af;
+        }
+
+        @media (max-width: 768px) {
+            .child-hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .child-hero-info h1 {
+                font-size: 2em;
+            }
+
+            .child-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .section-header {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+
+            .lessons-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Dashboard - HomeLearn Academy</title>
+    <meta name="description" content="Track your children's progress and manage your homeschool curriculum.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><a href="index.html">HomeLearn Academy</a></h1>
+                    <p class="tagline">K-5 Homeschool Curriculum Made Simple</p>
+                </div>
+                
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <nav class="main-navigation" role="navigation">
+                    <ul class="nav-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="has-submenu">
+                            <a href="#grades">Grade Levels</a>
+                            <ul class="submenu">
+                                <li><a href="kindergarten.html">Kindergarten</a></li>
+                                <li><a href="grade1.html">1st Grade</a></li>
+                                <li><a href="grade2.html">2nd Grade</a></li>
+                                <li><a href="grade3.html">3rd Grade</a></li>
+                                <li><a href="grade4.html">4th Grade</a></li>
+                                <li><a href="grade5.html">5th Grade</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="resources.html">Free Resources</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="dashboard.html" class="active">Parent Dashboard</a></li>
+                        <li><a href="pricing.html" class="btn-nav-premium">Go Premium</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content dashboard-content">
+        <section class="dashboard-hero">
+            <div class="container">
+                <div class="dashboard-welcome">
+                    <h1>Welcome Back, Sarah! 👋</h1>
+                    <p>Here's your homeschool overview for this week</p>
+                </div>
+                <div class="account-status">
+                    <span class="status-badge premium">Premium Member</span>
+                    <a href="pricing.html" class="upgrade-link">Manage Subscription</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="dashboard-main">
+            <div class="container">
+                <div class="dashboard-grid">
+                    <!-- Sidebar -->
+                    <aside class="dashboard-sidebar">
+                        <div class="sidebar-card">
+                            <h3>Quick Actions</h3>
+                            <ul class="quick-actions">
+                                <li><a href="#"><i class="fas fa-calendar-day"></i> Today's Lessons</a></li>
+                                <li><a href="#"><i class="fas fa-book"></i> Lesson Plans</a></li>
+                                <li><a href="#"><i class="fas fa-print"></i> Print Worksheets</a></li>
+                                <li><a href="#"><i class="fas fa-video"></i> Teaching Videos</a></li>
+                                <li><a href="#"><i class="fas fa-chart-line"></i> Progress Reports</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-card">
+                            <h3>This Week</h3>
+                            <div class="week-info">
+                                <p><strong>Week 12 of 36</strong></p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 33%"></div>
+                                </div>
+                                <p class="week-dates">Nov 18 - Nov 22, 2026</p>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-card">
+                            <h3>Resources</h3>
+                            <ul class="resource-links">
+                                <li><a href="#"><i class="fas fa-link"></i> Khan Academy</a></li>
+                                <li><a href="#"><i class="fas fa-link"></i> PBS LearningMedia</a></li>
+                                <li><a href="#"><i class="fas fa-link"></i> Library Resources</a></li>
+                                <li><a href="#"><i class="fas fa-comments"></i> Community Forum</a></li>
+                            </ul>
+                        </div>
+                    </aside>
+
+                    <!-- Main Content -->
+                    <div class="dashboard-content-main">
+                        <!-- Children Overview -->
+                        <div class="dashboard-section">
+                            <h2>Your Students</h2>
+                            <div class="students-grid">
+                                <div class="student-card">
+                                    <div class="student-header">
+                                        <div class="student-avatar">E</div>
+                                        <div class="student-info">
+                                            <h3>Emma</h3>
+                                            <p>3rd Grade • Age 8</p>
+                                        </div>
+                                    </div>
+                                    <div class="student-progress">
+                                        <div class="progress-item">
+                                            <span>This Week</span>
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: 80%"></div>
+                                            </div>
+                                            <span class="progress-text">4 of 5 days</span>
+                                        </div>
+                                    </div>
+                                    <div class="student-actions">
+                                        <a href="grade3.html" class="btn-small">View Curriculum</a>
+                                        <a href="#" class="btn-small btn-outline-small">Today's Lessons</a>
+                                    </div>
+                                </div>
+
+                                <div class="student-card">
+                                    <div class="student-header">
+                                        <div class="student-avatar">L</div>
+                                        <div class="student-info">
+                                            <h3>Liam</h3>
+                                            <p>1st Grade • Age 6</p>
+                                        </div>
+                                    </div>
+                                    <div class="student-progress">
+                                        <div class="progress-item">
+                                            <span>This Week</span>
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: 60%"></div>
+                                            </div>
+                                            <span class="progress-text">3 of 5 days</span>
+                                        </div>
+                                    </div>
+                                    <div class="student-actions">
+                                        <a href="grade1.html" class="btn-small">View Curriculum</a>
+                                        <a href="#" class="btn-small btn-outline-small">Today's Lessons</a>
+                                    </div>
+                                </div>
+
+                                <div class="add-student-card">
+                                    <i class="fas fa-plus-circle"></i>
+                                    <p>Add Another Child</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Today's Schedule -->
+                        <div class="dashboard-section">
+                            <h2>Today's Schedule - Thursday, Nov 21</h2>
+                            <div class="schedule-tabs">
+                                <button class="schedule-tab active">Emma (3rd)</button>
+                                <button class="schedule-tab">Liam (1st)</button>
+                            </div>
+                            
+                            <div class="today-schedule">
+                                <div class="schedule-lesson completed">
+                                    <div class="lesson-time">9:00 AM</div>
+                                    <div class="lesson-content">
+                                        <div class="lesson-subject math">Mathematics</div>
+                                        <h4>Multiplication Word Problems</h4>
+                                        <p>Practice solving multi-step word problems using multiplication</p>
+                                        <div class="lesson-resources">
+                                            <a href="#"><i class="fas fa-file-pdf"></i> Worksheet</a>
+                                            <a href="#"><i class="fas fa-video"></i> Tutorial</a>
+                                        </div>
+                                    </div>
+                                    <div class="lesson-status">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                </div>
+
+                                <div class="schedule-lesson completed">
+                                    <div class="lesson-time">10:15 AM</div>
+                                    <div class="lesson-content">
+                                        <div class="lesson-subject reading">Reading</div>
+                                        <h4>Charlotte's Web - Chapter 5</h4>
+                                        <p>Read and discuss character development</p>
+                                        <div class="lesson-resources">
+                                            <a href="#"><i class="fas fa-book"></i> Study Guide</a>
+                                            <a href="#"><i class="fas fa-question-circle"></i> Discussion Questions</a>
+                                        </div>
+                                    </div>
+                                    <div class="lesson-status">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                </div>
+
+                                <div class="schedule-lesson in-progress">
+                                    <div class="lesson-time">11:00 AM</div>
+                                    <div class="lesson-content">
+                                        <div class="lesson-subject writing">Writing</div>
+                                        <h4>Descriptive Paragraphs</h4>
+                                        <p>Write a paragraph describing a favorite place using sensory details</p>
+                                        <div class="lesson-resources">
+                                            <a href="#"><i class="fas fa-file-pdf"></i> Writing Prompt</a>
+                                            <a href="#"><i class="fas fa-clipboard-check"></i> Rubric</a>
+                                        </div>
+                                    </div>
+                                    <div class="lesson-status">
+                                        <button class="btn-mark-complete">Mark Complete</button>
+                                    </div>
+                                </div>
+
+                                <div class="schedule-lesson">
+                                    <div class="lesson-time">12:45 PM</div>
+                                    <div class="lesson-content">
+                                        <div class="lesson-subject science">Science</div>
+                                        <h4>States of Matter Experiment</h4>
+                                        <p>Observe and record changes between solid, liquid, and gas</p>
+                                        <div class="lesson-resources">
+                                            <a href="#"><i class="fas fa-flask"></i> Experiment Guide</a>
+                                            <a href="#"><i class="fas fa-list"></i> Materials List</a>
+                                        </div>
+                                    </div>
+                                    <div class="lesson-status">
+                                        <button class="btn-mark-complete">Mark Complete</button>
+                                    </div>
+                                </div>
+
+                                <div class="schedule-lesson">
+                                    <div class="lesson-time">1:30 PM</div>
+                                    <div class="lesson-content">
+                                        <div class="lesson-subject social">Social Studies</div>
+                                        <h4>Map Skills: Using a Compass Rose</h4>
+                                        <p>Practice identifying cardinal and intermediate directions</p>
+                                        <div class="lesson-resources">
+                                            <a href="#"><i class="fas fa-file-pdf"></i> Worksheet</a>
+                                            <a href="#"><i class="fas fa-map"></i> Interactive Map</a>
+                                        </div>
+                                    </div>
+                                    <div class="lesson-status">
+                                        <button class="btn-mark-complete">Mark Complete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activity -->
+                        <div class="dashboard-section">
+                            <h2>Recent Activity</h2>
+                            <div class="activity-list">
+                                <div class="activity-item">
+                                    <i class="fas fa-check-circle activity-icon success"></i>
+                                    <div class="activity-content">
+                                        <p><strong>Emma</strong> completed Math worksheet on multiplication</p>
+                                        <span class="activity-time">2 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <i class="fas fa-star activity-icon star"></i>
+                                    <div class="activity-content">
+                                        <p><strong>Liam</strong> earned a gold star for reading fluency!</p>
+                                        <span class="activity-time">3 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <i class="fas fa-download activity-icon info"></i>
+                                    <div class="activity-content">
+                                        <p>You downloaded <strong>Week 13 Lesson Plans</strong></p>
+                                        <span class="activity-time">Yesterday</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Premium Features Highlight -->
+                        <div class="premium-features-box">
+                            <div class="premium-icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <div class="premium-content">
+                                <h3>You're a Premium Member!</h3>
+                                <p>Enjoying full access to lesson plans, worksheets, and progress tracking. Your subscription renews on Dec 15, 2026.</p>
+                            </div>
+                            <a href="pricing.html" class="btn-outline">Manage Subscription</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Grade Levels</h4>
+                    <ul>
+                        <li><a href="kindergarten.html">Kindergarten</a></li>
+                        <li><a href="grade1.html">1st Grade</a></li>
+                        <li><a href="grade2.html">2nd Grade</a></li>
+                        <li><a href="grade3.html">3rd Grade</a></li>
+                        <li><a href="grade4.html">4th Grade</a></li>
+                        <li><a href="grade5.html">5th Grade</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="resources.html">Free Resources</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="dashboard.html">Parent Dashboard</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="faqs.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="forum.html">Community Forum</a></li>
+                        <li><a href="blog.html">Teaching Tips Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Stay Informed</h4>
+                    <p>Join our newsletter for weekly homeschool tips and curriculum updates!</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 HomeLearn Academy. All rights reserved.</p>
+                <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const navigation = document.querySelector('.main-navigation');
+            
+            mobileToggle.addEventListener('click', function() {
+                navigation.classList.toggle('active');
+                mobileToggle.classList.toggle('active');
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!navigation.contains(e.target) && !mobileToggle.contains(e.target)) {
+                    navigation.classList.remove('active');
+                    mobileToggle.classList.remove('active');
+                }
+            });
+
+            // Mark complete functionality
+            const completeButtons = document.querySelectorAll('.btn-mark-complete');
+            completeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const lesson = this.closest('.schedule-lesson');
+                    lesson.classList.remove('in-progress');
+                    lesson.classList.add('completed');
+                    this.parentElement.innerHTML = '<i class="fas fa-check-circle"></i>';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - HomeLearn Academy</title>
+    <meta name="description" content="Choose the perfect homeschool curriculum plan for your family. Start free or go premium for complete lesson plans and support.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><a href="index.html">HomeLearn Academy</a></h1>
+                    <p class="tagline">K-5 Homeschool Curriculum Made Simple</p>
+                </div>
+                
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <nav class="main-navigation" role="navigation">
+                    <ul class="nav-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="has-submenu">
+                            <a href="#grades">Grade Levels</a>
+                            <ul class="submenu">
+                                <li><a href="kindergarten.html">Kindergarten</a></li>
+                                <li><a href="grade1.html">1st Grade</a></li>
+                                <li><a href="grade2.html">2nd Grade</a></li>
+                                <li><a href="grade3.html">3rd Grade</a></li>
+                                <li><a href="grade4.html">4th Grade</a></li>
+                                <li><a href="grade5.html">5th Grade</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="resources.html">Free Resources</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="family-dashboard.html">Parent Dashboard</a></li>
+                        <li><a href="pricing.html" class="btn-nav-premium">Go Premium</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="pricing-hero">
+            <div class="container">
+                <h1>Choose Your Plan</h1>
+                <p class="pricing-subtitle">Start free and upgrade anytime. No long-term commitment required.</p>
+                
+                <div class="billing-toggle">
+                    <span class="toggle-label">Monthly</span>
+                    <label class="switch">
+                        <input type="checkbox" id="billingToggle">
+                        <span class="slider"></span>
+                    </label>
+                    <span class="toggle-label">Yearly <span class="save-badge">Save 20%</span></span>
+                </div>
+            </div>
+        </section>
+
+        <section class="pricing-plans-section">
+            <div class="container">
+                <div class="pricing-plans-grid">
+                    <!-- Free Plan -->
+                    <div class="pricing-plan-card free-plan">
+                        <div class="plan-header">
+                            <h3>Free Access</h3>
+                            <p class="plan-description">Perfect for exploring our curriculum</p>
+                        </div>
+                        
+                        <div class="plan-price">
+                            <div class="price-amount">
+                                <span class="currency">$</span>
+                                <span class="amount">0</span>
+                                <span class="period">/forever</span>
+                            </div>
+                        </div>
+                        
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> Access to all 6 grade levels (K-5)</li>
+                            <li><i class="fas fa-check"></i> Complete curriculum overview</li>
+                            <li><i class="fas fa-check"></i> Links to free resources (Khan Academy, PBS, etc.)</li>
+                            <li><i class="fas fa-check"></i> Sample weekly schedules</li>
+                            <li><i class="fas fa-check"></i> 2 sample lesson plans per grade</li>
+                            <li><i class="fas fa-check"></i> Community forum access</li>
+                            <li><i class="fas fa-check"></i> Monthly newsletter with tips</li>
+                        </ul>
+                        
+                        <a href="signup.html" class="plan-button btn-outline">Get Started Free</a>
+                        <p class="plan-note">No credit card required</p>
+                    </div>
+
+                    <!-- Premium Monthly Plan -->
+                    <div class="pricing-plan-card premium-plan featured" id="monthlyPlan">
+                        <div class="popular-badge">Most Popular</div>
+                        <div class="plan-header">
+                            <h3>Premium Monthly</h3>
+                            <p class="plan-description">Complete curriculum with full support</p>
+                        </div>
+                        
+                        <div class="plan-price">
+                            <div class="price-amount">
+                                <span class="currency">$</span>
+                                <span class="amount">19</span>
+                                <span class="period">/month</span>
+                            </div>
+                            <p class="price-subtext">Billed monthly, cancel anytime</p>
+                        </div>
+                        
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> <strong>Everything in Free, plus:</strong></li>
+                            <li><i class="fas fa-check"></i> Complete daily lesson plans (180 days)</li>
+                            <li><i class="fas fa-check"></i> Printable worksheets & activities</li>
+                            <li><i class="fas fa-check"></i> Original writing curriculum</li>
+                            <li><i class="fas fa-check"></i> Literature study guides (30+ books)</li>
+                            <li><i class="fas fa-check"></i> Science experiment guides</li>
+                            <li><i class="fas fa-check"></i> Grading rubrics & answer keys</li>
+                            <li><i class="fas fa-check"></i> Progress tracking dashboard</li>
+                            <li><i class="fas fa-check"></i> Video teaching tutorials</li>
+                            <li><i class="fas fa-check"></i> Customizable schedules</li>
+                            <li><i class="fas fa-check"></i> Priority email support</li>
+                            <li><i class="fas fa-check"></i> Access for unlimited children</li>
+                        </ul>
+                        
+                        <a href="#" class="plan-button btn-primary-large">Start 14-Day Free Trial</a>
+                        <p class="plan-note">No credit card required for trial</p>
+                    </div>
+
+                    <!-- Premium Yearly Plan -->
+                    <div class="pricing-plan-card premium-plan" id="yearlyPlan" style="display: none;">
+                        <div class="popular-badge">Best Value</div>
+                        <div class="plan-header">
+                            <h3>Premium Yearly</h3>
+                            <p class="plan-description">Save 20% with annual billing</p>
+                        </div>
+                        
+                        <div class="plan-price">
+                            <div class="price-amount">
+                                <span class="currency">$</span>
+                                <span class="amount">180</span>
+                                <span class="period">/year</span>
+                            </div>
+                            <p class="price-subtext">Just $15/month • Save $48/year</p>
+                        </div>
+                        
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> <strong>Everything in Premium Monthly, plus:</strong></li>
+                            <li><i class="fas fa-check"></i> 20% discount (2 months free)</li>
+                            <li><i class="fas fa-check"></i> Bonus: End-of-year portfolio templates</li>
+                            <li><i class="fas fa-check"></i> Bonus: State reporting guides</li>
+                            <li><i class="fas fa-check"></i> Early access to new content</li>
+                        </ul>
+                        
+                        <a href="#" class="plan-button btn-primary-large">Start 14-Day Free Trial</a>
+                        <p class="plan-note">No credit card required for trial</p>
+                    </div>
+
+                    <!-- Family Plan -->
+                    <div class="pricing-plan-card family-plan">
+                        <div class="plan-header">
+                            <h3>Family & Co-op</h3>
+                            <p class="plan-description">For large families or homeschool co-ops</p>
+                        </div>
+                        
+                        <div class="plan-price">
+                            <div class="price-amount">
+                                <span class="amount-text">Custom</span>
+                            </div>
+                            <p class="price-subtext">Contact us for pricing</p>
+                        </div>
+                        
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> <strong>Everything in Premium, plus:</strong></li>
+                            <li><i class="fas fa-check"></i> Multiple family accounts</li>
+                            <li><i class="fas fa-check"></i> Co-op teaching resources</li>
+                            <li><i class="fas fa-check"></i> Group lesson planning tools</li>
+                            <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                            <li><i class="fas fa-check"></i> Custom curriculum adjustments</li>
+                            <li><i class="fas fa-check"></i> Volume discounts available</li>
+                        </ul>
+                        
+                        <a href="contact.html" class="plan-button btn-outline">Contact Us</a>
+                        <p class="plan-note">Perfect for 5+ families</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="comparison-section">
+            <div class="container">
+                <h2>Detailed Feature Comparison</h2>
+                
+                <div class="comparison-table-wrapper">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Free</th>
+                                <th>Premium</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Grade levels covered</td>
+                                <td>K-5th</td>
+                                <td>K-5th</td>
+                            </tr>
+                            <tr>
+                                <td>Curriculum overview & scope</td>
+                                <td><i class="fas fa-check text-success"></i></td>
+                                <td><i class="fas fa-check text-success"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Links to free resources</td>
+                                <td><i class="fas fa-check text-success"></i></td>
+                                <td><i class="fas fa-check text-success"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Sample lesson plans</td>
+                                <td>2 per grade</td>
+                                <td>180 days/grade</td>
+                            </tr>
+                            <tr>
+                                <td>Daily lesson plans</td>
+                                <td><i class="fas fa-times text-muted"></i></td>
+                                <td><i class="fas fa-check text-success"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Printable worksheets</td>
+                                <td><i class="fas fa-times text-muted"></i></td>
+                                <td>1000+ worksheets</td>
+                            </tr>
+                            <tr>
+                                <td>Writing curriculum</td>
+                                <td><i class="fas fa-times text-muted"></i></td>
+                                <td><i class="fas fa-check text-success"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Literature study guides</td>
+                                <td><i class="fas fa-times text-muted"></i></td>
+                                <td>30+ books</td>
+                            </tr>
+                            <tr>
+                                <td>Science experiments</td>
+                                <td><i class="fas fa-times text-muted"></i></td>
+                                <td>150+ experiments</td>
+                            </tr>
+                            <tr>
+                                <td>Grading rubrics</td>
+                                <td><i class="fas fa-times text-muted"></i></td>
+                                <td><i class="fas fa-check text-success"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Answer keys</td>
+                                <td><i class="fas fa-times text-muted"></i></td>
+                                <td><i class="fas fa-check text-success"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Progress tracking</td>
+                                <td><i class="fas fa-times text-muted"></i></td>
+                                <td><i class="fas fa-check text-success"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Video tutorials</td>
+                                <td><i class="fas fa-times text-muted"></i></td>
+                                <td>100+ videos</td>
+                            </tr>
+                            <tr>
+                                <td>Customizable schedules</td>
+                                <td><i class="fas fa-times text-muted"></i></td>
+                                <td><i class="fas fa-check text-success"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Email support</td>
+                                <td>Community forum</td>
+                                <td>Priority support</td>
+                            </tr>
+                            <tr>
+                                <td>Number of children</td>
+                                <td>Unlimited</td>
+                                <td>Unlimited</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3><i class="fas fa-question-circle"></i> Is the free trial really free?</h3>
+                        <p>Yes! You get 14 days of full Premium access without entering a credit card. After the trial, you can choose to subscribe or continue with the free plan.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3><i class="fas fa-question-circle"></i> Can I use this for multiple children?</h3>
+                        <p>Absolutely! One subscription covers unlimited children in your household, regardless of which grades they're in.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3><i class="fas fa-question-circle"></i> What if I need to cancel?</h3>
+                        <p>You can cancel anytime with no penalties. Monthly subscribers can cancel before the next billing cycle, and yearly subscribers receive a prorated refund within 30 days.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3><i class="fas fa-question-circle"></i> Do I need to be a certified teacher?</h3>
+                        <p>Not at all! Our curriculum is designed for parents with no teaching background. We provide step-by-step instructions and video tutorials to guide you.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3><i class="fas fa-question-circle"></i> Can I switch between monthly and yearly?</h3>
+                        <p>Yes! You can upgrade to yearly at any time to start saving. We'll prorate your current month and apply it to your annual subscription.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3><i class="fas fa-question-circle"></i> What resources do I need to buy separately?</h3>
+                        <p>Most resources are free (Khan Academy, library books, etc.). For hands-on activities, you may need basic craft supplies and science materials (usually under $50/year).</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3><i class="fas fa-question-circle"></i> Is this aligned with state standards?</h3>
+                        <p>Yes! Our curriculum is aligned with Common Core and most state standards. Premium members get state-specific reporting guides.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3><i class="fas fa-question-circle"></i> Can I print the materials?</h3>
+                        <p>Premium members can print unlimited worksheets, lesson plans, and activities. We also offer digital versions for tablet use.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="guarantee-section">
+            <div class="container">
+                <div class="guarantee-box">
+                    <i class="fas fa-shield-alt"></i>
+                    <h2>30-Day Money-Back Guarantee</h2>
+                    <p>Try Premium risk-free. If you're not completely satisfied within the first 30 days, we'll refund your payment in full—no questions asked.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to Simplify Your Homeschool?</h2>
+                    <p>Join hundreds of families who've transformed their homeschool experience</p>
+                    <div class="cta-buttons">
+                        <a href="#" class="btn-primary-large">Start Your Free Trial</a>
+                        <a href="index.html" class="btn-secondary">Learn More</a>
+                    </div>
+                    <p class="cta-note">No credit card required • Cancel anytime • 30-day guarantee</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Grade Levels</h4>
+                    <ul>
+                        <li><a href="kindergarten.html">Kindergarten</a></li>
+                        <li><a href="grade1.html">1st Grade</a></li>
+                        <li><a href="grade2.html">2nd Grade</a></li>
+                        <li><a href="grade3.html">3rd Grade</a></li>
+                        <li><a href="grade4.html">4th Grade</a></li>
+                        <li><a href="grade5.html">5th Grade</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="resources.html">Free Resources</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="family-dashboard.html">Parent Dashboard</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="faqs.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="forum.html">Community Forum</a></li>
+                        <li><a href="blog.html">Teaching Tips Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Stay Informed</h4>
+                    <p>Join our newsletter for weekly homeschool tips and curriculum updates!</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 HomeLearn Academy. All rights reserved.</p>
+                <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const navigation = document.querySelector('.main-navigation');
+            
+            mobileToggle.addEventListener('click', function() {
+                navigation.classList.toggle('active');
+                mobileToggle.classList.toggle('active');
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!navigation.contains(e.target) && !mobileToggle.contains(e.target)) {
+                    navigation.classList.remove('active');
+                    mobileToggle.classList.remove('active');
+                }
+            });
+
+            // Billing toggle functionality
+            const billingToggle = document.getElementById('billingToggle');
+            const monthlyPlan = document.getElementById('monthlyPlan');
+            const yearlyPlan = document.getElementById('yearlyPlan');
+
+            billingToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    monthlyPlan.style.display = 'none';
+                    yearlyPlan.style.display = 'block';
+                } else {
+                    monthlyPlan.style.display = 'block';
+                    yearlyPlan.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
