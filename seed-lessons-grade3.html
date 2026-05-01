@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seed 3rd Grade Lessons - HomeLearn Academy</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><a href="index.html">HomeLearn Academy</a></h1>
+                    <p class="tagline">K-5 Homeschool Curriculum Made Simple</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="hero-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 0;">
+            <div class="container">
+                <h1 style="color: white; text-align: center;">Seed 3rd Grade Lessons</h1>
+                <p style="color: white; text-align: center; font-size: 1.2em;">Click the button below to add 5 sample 3rd grade lessons to your database</p>
+            </div>
+        </section>
+
+        <section style="padding: 60px 0;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <button id="seedButton" class="btn-primary" style="font-size: 1.2em; padding: 20px 40px;">
+                        Add 3rd Grade Lessons to Database
+                    </button>
+                    <div id="status" style="margin-top: 30px; font-size: 1.1em;"></div>
+                    <div id="lessonsList" style="margin-top: 30px; text-align: left;"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>HomeLearn Academy</h4>
+                    <p>K-5 Homeschool Curriculum Made Simple</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { db } from './firebase-config.js';
+        import { collection, addDoc, getDocs, query, where } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+
+        const lessons = [
+            {
+                title: "Multiplication Mastery",
+                subject: "Math",
+                gradeLevel: "3rd Grade",
+                duration: "45 minutes",
+                description: "Master multiplication tables 1-12 through interactive practice and real-world problem solving. Learn strategies like skip counting, arrays, and repeated addition.",
+                objectives: [
+                    "Memorize multiplication facts for numbers 1-12",
+                    "Understand multiplication as repeated addition",
+                    "Solve word problems using multiplication",
+                    "Identify patterns in multiplication tables"
+                ],
+                materials: [
+                    "Multiplication chart (1-12)",
+                    "Index cards for flashcards",
+                    "Small objects for counting (beans, buttons, etc.)",
+                    "Worksheet with practice problems",
+                    "Timer for timed drills"
+                ],
+                activities: [
+                    {
+                        name: "Skip Counting Warm-up",
+                        duration: "10 minutes",
+                        instructions: "Practice skip counting by 2s, 3s, 4s, 5s, and 10s. Use a number line to visualize the patterns. Clap or jump while counting to make it kinesthetic."
+                    },
+                    {
+                        name: "Array Building",
+                        duration: "15 minutes",
+                        instructions: "Use small objects to create arrays. For example, make 3 rows of 4 beans to show 3×4=12. Draw the arrays on paper and write the multiplication sentence."
+                    },
+                    {
+                        name: "Multiplication War Card Game",
+                        duration: "15 minutes",
+                        instructions: "Use a deck of cards (remove face cards). Each player flips two cards and multiplies them. Highest product wins the round. Practice mental math!"
+                    },
+                    {
+                        name: "Word Problem Challenge",
+                        duration: "5 minutes",
+                        instructions: "Solve 3-5 word problems: 'Sarah has 4 boxes with 6 crayons in each box. How many crayons does she have?' Draw pictures to help visualize."
+                    }
+                ],
+                faithIntegration: "Discuss how God created patterns in nature (flower petals, honeycombs) and how multiplication helps us understand His orderly creation. Pray thanking God for the gift of numbers and logic.",
+                assessment: "Complete a timed multiplication quiz (20 problems in 5 minutes). Students should aim for 80% accuracy. Review any facts that need more practice.",
+                extensions: [
+                    "Create your own multiplication story problems",
+                    "Research the history of multiplication",
+                    "Learn about the commutative property (3×4 = 4×3)"
+                ]
+            },
+            {
+                title: "Reading Comprehension: Story Elements",
+                subject: "Reading",
+                gradeLevel: "3rd Grade",
+                duration: "50 minutes",
+                description: "Identify and analyze story elements including characters, setting, plot, problem, and solution. Practice making predictions and drawing conclusions from text.",
+                objectives: [
+                    "Identify main characters and their traits",
+                    "Describe the setting (time and place)",
+                    "Summarize the plot in sequence",
+                    "Identify the problem and solution",
+                    "Make predictions based on text evidence"
+                ],
+                materials: [
+                    "Age-appropriate chapter book or short story",
+                    "Story map graphic organizer",
+                    "Colored pencils or markers",
+                    "Reading journal",
+                    "Character trait word list"
+                ],
+                activities: [
+                    {
+                        name: "Read Aloud",
+                        duration: "20 minutes",
+                        instructions: "Read a chapter or short story together. Stop periodically to discuss what's happening. Ask prediction questions: 'What do you think will happen next? Why?'"
+                    },
+                    {
+                        name: "Story Map Creation",
+                        duration: "15 minutes",
+                        instructions: "Fill out a story map graphic organizer. Include: Characters (with traits), Setting (time/place), Beginning/Middle/End, Problem, Solution. Draw pictures for each section."
+                    },
+                    {
+                        name: "Character Analysis",
+                        duration: "10 minutes",
+                        instructions: "Choose the main character. List 5 character traits with evidence from the text. Example: 'Brave - she stood up to the bully on page 12.'"
+                    },
+                    {
+                        name: "Retelling Practice",
+                        duration: "5 minutes",
+                        instructions: "Retell the story in your own words using the story map as a guide. Include all important events in order."
+                    }
+                ],
+                faithIntegration: "Discuss how stories in the Bible have the same elements (characters, setting, problem, solution). Compare the story read today to a Bible story. How did God help solve the problem in the Bible story?",
+                assessment: "Write a paragraph summarizing the story including all five elements. Draw a picture showing the most important scene.",
+                extensions: [
+                    "Write an alternate ending to the story",
+                    "Create a comic strip retelling the story",
+                    "Compare two characters from different stories"
+                ]
+            },
+            {
+                title: "Simple Machines in God's Creation",
+                subject: "Science",
+                gradeLevel: "3rd Grade",
+                duration: "60 minutes",
+                description: "Explore the six simple machines (lever, pulley, wheel and axle, inclined plane, wedge, screw) and discover how they make work easier. Find examples in nature and everyday life.",
+                objectives: [
+                    "Identify the six types of simple machines",
+                    "Explain how each machine makes work easier",
+                    "Find examples of simple machines in daily life",
+                    "Build a simple machine model",
+                    "Understand force, work, and mechanical advantage"
+                ],
+                materials: [
+                    "Ruler and pencil (for lever)",
+                    "String and small bucket (for pulley)",
+                    "Toy car (for wheel and axle)",
+                    "Books and board (for inclined plane)",
+                    "Butter knife (for wedge)",
+                    "Jar with lid (for screw)",
+                    "Science journal"
+                ],
+                activities: [
+                    {
+                        name: "Simple Machines Introduction",
+                        duration: "10 minutes",
+                        instructions: "Watch a short video or read about the six simple machines. Create a chart listing each machine with a simple definition and sketch."
+                    },
+                    {
+                        name: "Hands-On Exploration Stations",
+                        duration: "30 minutes",
+                        instructions: "Set up 6 stations, one for each machine. Spend 5 minutes at each: 1) Lever - use ruler as seesaw, 2) Pulley - lift bucket with string, 3) Wheel/Axle - roll toy car, 4) Inclined Plane - push book up ramp vs. lifting, 5) Wedge - cut playdough with knife, 6) Screw - open jar lid. Record observations."
+                    },
+                    {
+                        name: "Simple Machine Hunt",
+                        duration: "10 minutes",
+                        instructions: "Walk around your house and find 10 examples of simple machines. Examples: door handle (wheel/axle), stairs (inclined plane), scissors (lever), light switch (lever)."
+                    },
+                    {
+                        name: "Design Challenge",
+                        duration: "10 minutes",
+                        instructions: "Draw a design for a compound machine (uses 2+ simple machines). Example: a wheelbarrow uses a wheel/axle and lever. Label each simple machine in your design."
+                    }
+                ],
+                faithIntegration: "Discuss how God designed animals to use simple machines: birds use their beaks as wedges, spider webs use pulleys, woodpeckers use their beaks as levers. Thank God for His wisdom in creation and for giving humans the ability to invent tools.",
+                assessment: "Create a poster showing all six simple machines with drawings and real-life examples. Explain to a family member how each machine makes work easier.",
+                extensions: [
+                    "Build a Rube Goldberg machine using multiple simple machines",
+                    "Research famous inventors who used simple machines",
+                    "Calculate mechanical advantage for an inclined plane"
+                ]
+            },
+            {
+                title: "Paragraph Writing: Topic Sentences & Details",
+                subject: "Writing",
+                gradeLevel: "3rd Grade",
+                duration: "45 minutes",
+                description: "Learn to write a well-organized paragraph with a clear topic sentence, supporting details, and concluding sentence. Practice using descriptive language and proper punctuation.",
+                objectives: [
+                    "Write a clear topic sentence",
+                    "Include 3-5 supporting detail sentences",
+                    "Write a concluding sentence",
+                    "Use transition words (first, next, then, finally)",
+                    "Edit for capitalization and punctuation"
+                ],
+                materials: [
+                    "Writing paper or journal",
+                    "Pencil and eraser",
+                    "Paragraph graphic organizer",
+                    "List of transition words",
+                    "Sample paragraphs for analysis",
+                    "Colored pencils for editing"
+                ],
+                activities: [
+                    {
+                        name: "Paragraph Structure Lesson",
+                        duration: "10 minutes",
+                        instructions: "Read sample paragraphs together. Use different colored pencils to highlight: topic sentence (yellow), detail sentences (green), concluding sentence (blue). Discuss what makes each sentence effective."
+                    },
+                    {
+                        name: "Topic Sentence Practice",
+                        duration: "5 minutes",
+                        instructions: "Choose a topic (favorite animal, hobby, season, etc.). Write 3 different topic sentences for the same topic. Pick the strongest one. A good topic sentence tells the main idea clearly."
+                    },
+                    {
+                        name: "Graphic Organizer Planning",
+                        duration: "10 minutes",
+                        instructions: "Use a paragraph organizer. Write your topic sentence at the top. List 3-5 supporting details in the middle boxes. Write your concluding sentence at the bottom. Include transition words."
+                    },
+                    {
+                        name: "Draft and Edit",
+                        duration: "15 minutes",
+                        instructions: "Write your paragraph using the organizer as a guide. Then edit: Check capitalization, punctuation, spelling. Does each sentence support the topic? Add descriptive words. Read aloud to check flow."
+                    },
+                    {
+                        name: "Share and Celebrate",
+                        duration: "5 minutes",
+                        instructions: "Read your paragraph aloud to a family member. Explain your topic sentence and how your details support it."
+                    }
+                ],
+                faithIntegration: "Write a paragraph about one of God's attributes (love, faithfulness, creativity, etc.) with biblical examples as supporting details. Or write about how you can serve others this week.",
+                assessment: "Final paragraph should include: clear topic sentence, 3+ detail sentences with transitions, concluding sentence, proper capitalization and punctuation, neat handwriting or typing.",
+                extensions: [
+                    "Write a 3-paragraph essay using the same structure",
+                    "Turn your paragraph into a presentation",
+                    "Write a persuasive paragraph trying to convince someone"
+                ]
+            },
+            {
+                title: "Map Skills & Geography",
+                subject: "Social Studies",
+                gradeLevel: "3rd Grade",
+                duration: "50 minutes",
+                description: "Learn essential map skills including reading map keys, using a compass rose, understanding scale, and identifying continents and oceans. Create your own map with accurate symbols and labels.",
+                objectives: [
+                    "Identify the seven continents and five oceans",
+                    "Use a compass rose to find cardinal directions",
+                    "Read and create a map key/legend",
+                    "Understand map scale and distance",
+                    "Locate your state and country on a map"
+                ],
+                materials: [
+                    "World map and US map",
+                    "Blank paper for map creation",
+                    "Colored pencils or markers",
+                    "Ruler",
+                    "Atlas or globe",
+                    "Map symbols reference sheet"
+                ],
+                activities: [
+                    {
+                        name: "Continents & Oceans Review",
+                        duration: "10 minutes",
+                        instructions: "Using a world map or globe, locate and label all 7 continents (Asia, Africa, North America, South America, Antarctica, Europe, Australia) and 5 oceans (Pacific, Atlantic, Indian, Arctic, Southern). Create a memory trick to remember them."
+                    },
+                    {
+                        name: "Compass Rose Practice",
+                        duration: "10 minutes",
+                        instructions: "Learn N-E-S-W (North, East, South, West) using 'Never Eat Soggy Waffles.' Practice: 'If you're facing North and turn right, which direction are you facing?' Use a real compass if available."
+                    },
+                    {
+                        name: "Map Key Detective",
+                        duration: "10 minutes",
+                        instructions: "Study a map with a key/legend. Find 5 symbols and what they represent (mountains, rivers, cities, etc.). Discuss why maps need symbols instead of pictures."
+                    },
+                    {
+                        name: "Create Your Own Map",
+                        duration: "15 minutes",
+                        instructions: "Draw a map of your neighborhood, house, or imaginary island. Include: compass rose, map key with at least 5 symbols, title, scale (1 inch = 10 feet). Label important locations."
+                    },
+                    {
+                        name: "Map Challenge",
+                        duration: "5 minutes",
+                        instructions: "Using your US map, find your state. What states border it? What direction is the ocean from you? How far is it to the capital city?"
+                    }
+                ],
+                faithIntegration: "Study maps of Bible lands. Locate Israel, Egypt, and the Mediterranean Sea. Trace Paul's missionary journeys or the Israelites' exodus from Egypt. Discuss how geography affected Bible stories.",
+                assessment: "Complete a map quiz: label continents and oceans, use compass rose to answer direction questions, interpret a map key. Create a detailed map with all required elements.",
+                extensions: [
+                    "Research a country on a different continent",
+                    "Create a 3D topographic map with clay",
+                    "Learn about different map projections",
+                    "Use Google Earth to explore locations virtually"
+                ]
+            }
+        ];
+
+        document.getElementById('seedButton').addEventListener('click', async () => {
+            const button = document.getElementById('seedButton');
+            const status = document.getElementById('status');
+            const lessonsList = document.getElementById('lessonsList');
+            
+            button.disabled = true;
+            status.innerHTML = '<p style="color: #667eea;">Adding lessons to database...</p>';
+            
+            try {
+                // Check if lessons already exist
+                const lessonsRef = collection(db, 'lessons');
+                const q = query(lessonsRef, where('gradeLevel', '==', '3rd Grade'));
+                const existingLessons = await getDocs(q);
+                
+                if (!existingLessons.empty) {
+                    status.innerHTML = '<p style="color: #f59e0b;">⚠️ 3rd grade lessons already exist in the database. Delete them first if you want to re-seed.</p>';
+                    button.disabled = false;
+                    return;
+                }
+                
+                // Add each lesson
+                let addedCount = 0;
+                let listHTML = '<h3 style="color: #667eea; margin-bottom: 20px;">Added Lessons:</h3><ul style="list-style: none; padding: 0;">';
+                
+                for (const lesson of lessons) {
+                    await addDoc(collection(db, 'lessons'), lesson);
+                    addedCount++;
+                    listHTML += `<li style="padding: 10px; margin: 10px 0; background: #f3f4f6; border-left: 4px solid #667eea;">
+                        <strong>${lesson.title}</strong> - ${lesson.subject}
+                    </li>`;
+                }
+                
+                listHTML += '</ul>';
+                
+                status.innerHTML = `<p style="color: #10b981; font-weight: bold;">✅ Successfully added ${addedCount} 3rd grade lessons!</p>`;
+                lessonsList.innerHTML = listHTML;
+                
+            } catch (error) {
+                console.error('Error adding lessons:', error);
+                status.innerHTML = `<p style="color: #ef4444;">❌ Error: ${error.message}</p>`;
+                button.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
