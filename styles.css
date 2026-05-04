@@ -104,6 +104,8 @@ body {
     font-weight: 700;
     box-shadow: 0 4px 15px rgba(167, 139, 250, 0.4);
     transition: all 0.3s ease;
+    white-space: nowrap;
+    display: inline-block;
 }
 
 .btn-nav-premium:hover {
@@ -961,6 +963,7 @@ body {
         visibility: hidden;
         transform: translateY(-10px);
         transition: all 0.3s ease;
+        z-index: 999;
     }
     
     .main-navigation.active {
@@ -985,6 +988,14 @@ body {
         border-bottom: none;
     }
     
+    .btn-nav-premium {
+        display: block;
+        text-align: center;
+        width: 100%;
+        max-width: none;
+        margin-top: 10px;
+    }
+    
     .submenu {
         position: static;
         opacity: 1;
@@ -994,6 +1005,14 @@ body {
         background: #f8f9fa;
         margin-top: 10px;
         border-radius: 4px;
+    }
+    
+    .logo h1 {
+        font-size: 1.5em;
+    }
+    
+    .tagline {
+        font-size: 0.85em;
     }
     
     .hero-content h1 {
@@ -1050,7 +1069,7 @@ body {
 
 @media (max-width: 480px) {
     .hero-content h1 {
-        font-size: 2em;
+        font-size: 1.8em;
     }
     
     .btn-primary-large {
@@ -1060,6 +1079,18 @@ body {
     
     .container {
         padding: 0 15px;
+    }
+    
+    .logo h1 {
+        font-size: 1.3em;
+    }
+    
+    .tagline {
+        font-size: 0.75em;
+    }
+    
+    .header-content {
+        padding: 10px 0;
     }
 }
 
@@ -3396,6 +3427,45 @@ input:checked + .slider:before {
 
 .premium-unlock:hover::before {
     left: 100%;
+}
+
+/* Form Status Messages */
+.form-status {
+    margin: 20px 0;
+}
+
+.success-message {
+    background: #d1fae5;
+    border: 2px solid #10b981;
+    color: #065f46;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.success-message i {
+    color: #10b981;
+    font-size: 1.2em;
+}
+
+.error-message {
+    background: #fee2e2;
+    border: 2px solid #ef4444;
+    color: #991b1b;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.error-message i {
+    color: #ef4444;
+    font-size: 1.2em;
 }
 
 @media (max-width: 768px) {
